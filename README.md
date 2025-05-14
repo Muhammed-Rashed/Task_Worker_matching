@@ -1,1 +1,1 @@
-# Codefoces
+# We Love Database Instructor
