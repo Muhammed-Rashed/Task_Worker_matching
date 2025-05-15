@@ -1,0 +1,260 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="MyAvaloniaApp.Views.ClientProfile"
+        Width="1024" Height="700"
+        Background="#111827"
+        Title="Client Profile"
+        WindowStartupLocation="CenterScreen">
+
+  <Grid>
+    <!-- 5% / 90% / 5% rows -->
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0.05*"/>
+      <RowDefinition Height="0.9*"/>
+      <RowDefinition Height="0.05*"/>
+    </Grid.RowDefinitions>
+    <!-- 5% / 90% / 5% columns -->
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="0.05*"/>
+      <ColumnDefinition Width="0.9*"/>
+      <ColumnDefinition Width="0.05*"/>
+    </Grid.ColumnDefinitions>
+
+    <!-- Navigation Bar -->
+    <StackPanel Grid.Row="0" Grid.Column="1"
+                Orientation="Horizontal"
+                Spacing="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+      <Button Content="Home" Background="#1f2937" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
+      <Button Content="My Requests" Background="#1f2937" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
+      <Button Content="Questions" Background="#1f2937" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
+      <Button Content="Profile" Background="#2563eb" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
+      <Button Content="Log out" Background="#1f2937" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
+    </StackPanel>
+
+    <!-- Backdrop Panel -->
+    <Border Grid.Row="1" Grid.Column="1"
+            Background="#1f2937"
+            CornerRadius="25"/>
+
+    <!-- Main Content -->
+    <Border Grid.Row="1" Grid.Column="1"
+            Background="Transparent"
+            Padding="24">
+      <StackPanel Spacing="24">
+
+        <!-- Profile Section -->
+        <Border Background="#1f2937"
+                BorderBrush="#425f9e"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="16">
+          <StackPanel Spacing="16">
+            <TextBlock Text="Profile"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Foreground="White"/>
+
+            <!-- Full Name & Email -->
+            <Grid ColumnSpacing="12">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <TextBox Grid.Column="0"
+                       Watermark="Full Name"
+                       Text="John Doe"
+                       Background="#374151"
+                       Foreground="White"
+                       BorderBrush="#425f9e"
+                       Height="30"/>
+              <TextBox Grid.Column="1"
+                       Watermark="Email Address"
+                       Text="john@example.com"
+                       Background="#374151"
+                       Foreground="White"
+                       BorderBrush="#425f9e"
+                       Height="30"/>
+            </Grid>
+
+            <!-- Phone + Save -->
+            <Grid ColumnSpacing="12">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="Auto"/>
+              </Grid.ColumnDefinitions>
+              <TextBox Grid.Column="0"
+                       Watermark="Phone Number"
+                       Text="+1 555 123 4567"
+                       Background="#374151"
+                       Foreground="White"
+                       BorderBrush="#425f9e"
+                       Height="30"/>
+              <Button Grid.Column="1"
+                      Content="Save Changes"
+                      Background="#2563eb"
+                      Foreground="White"
+                      Padding="10,4"
+                      BorderBrush="Transparent"
+                      CornerRadius="6"/>
+            </Grid>
+
+            <!-- Change Password -->
+            <TextBlock Text="Change Password"
+                       FontSize="14"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       Margin="0,8,0,4"/>
+
+            <Grid RowSpacing="8">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+              </Grid.RowDefinitions>
+
+              <!-- Current & New -->
+              <TextBox Grid.Row="0" Grid.Column="0"
+                       Watermark="Current Password"
+                       Background="#374151"
+                       Foreground="White"
+                       BorderBrush="#425f9e"
+                       Height="30"/>
+              <TextBox Grid.Row="0" Grid.Column="1"
+                       Watermark="New Password"
+                       Background="#374151"
+                       Foreground="White"
+                       BorderBrush="#425f9e"
+                       Height="30"/>
+
+              <!-- Confirm -->
+              <TextBox Grid.Row="1" Grid.ColumnSpan="2"
+                       Watermark="Confirm Password"
+                       Background="#374151"
+                       Foreground="White"
+                       BorderBrush="#425f9e"
+                       Height="30"/>
+
+              <!-- Save -->
+              <Button Grid.Row="2" Grid.Column="0"
+                      Content="Save Changes"
+                      Background="#2563eb"
+                      Foreground="White"
+                      Padding="10,4"
+                      BorderBrush="Transparent"
+                      CornerRadius="6"
+                      HorizontalAlignment="Left"/>
+            </Grid>
+          </StackPanel>
+        </Border>
+
+        <!-- Payment Information -->
+        <Border Background="#1f2937"
+                BorderBrush="#425f9e"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="16">
+          <StackPanel Spacing="16">
+            <TextBlock Text="Payment Information"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Foreground="White"/>
+
+            <!-- Card -->
+            <Grid ColumnSpacing="12" RowSpacing="4">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Row="0" Grid.Column="0"
+                         Text="Visa ending in **** 1234"
+                         Foreground="White"/>
+              <TextBlock Grid.Row="0" Grid.Column="1"
+                         Text="Expires 12/24"
+                         Foreground="Gray"
+                         FontSize="11"/>
+              <Button Grid.Row="0" Grid.Column="2"
+                      Content="Edit"
+                      Background="Transparent"
+                      Foreground="#2563eb"
+                      BorderBrush="Transparent"
+                      Padding="4"
+                      CornerRadius="6"/>
+
+              <!-- PayPal -->
+              <TextBlock Grid.Row="1" Grid.Column="0"
+                         Text="PayPal   john@example.com"
+                         Foreground="White"/>
+              <Button Grid.Row="1" Grid.Column="2"
+                      Content="Edit"
+                      Background="Transparent"
+                      Foreground="#2563eb"
+                      BorderBrush="Transparent"
+                      Padding="4"
+                      CornerRadius="6"/>
+            </Grid>
+
+            <Button Content="Add Payment Method"
+                    Background="#2563eb"
+                    Foreground="White"
+                    Padding="10,4"
+                    BorderBrush="Transparent"
+                    CornerRadius="6"/>
+          </StackPanel>
+        </Border>
+
+        <!-- Spending History -->
+        <Border Background="#1f2937"
+                BorderBrush="#425f9e"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="16">
+          <StackPanel Spacing="12">
+            <TextBlock Text="Spending History"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Foreground="White"/>
+
+            <!-- Table Header -->
+            <Grid ColumnSpacing="8" RowSpacing="6">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" Text="Task Title" Foreground="LightGray" FontWeight="SemiBold"/>
+              <TextBlock Grid.Column="1" Text="Date Completed" Foreground="LightGray" FontWeight="SemiBold"/>
+              <TextBlock Grid.Column="2" Text="Amount Paid" Foreground="LightGray" FontWeight="SemiBold"/>
+              <TextBlock Grid.Column="3" Text="Worker" Foreground="LightGray" FontWeight="SemiBold"/>
+
+              <!-- Row 1 -->
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="Website Design" Foreground="White"/>
+              <TextBlock Grid.Row="1" Grid.Column="1" Text="Oct 15, 2023" Foreground="White"/>
+              <TextBlock Grid.Row="1" Grid.Column="2" Text="$500.00" Foreground="White"/>
+              <TextBlock Grid.Row="1" Grid.Column="3" Text="Sarah Smith" Foreground="#2563eb"/>
+
+              <!-- Row 2 -->
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="Logo Design" Foreground="White"/>
+              <TextBlock Grid.Row="2" Grid.Column="1" Text="Oct 10, 2023" Foreground="White"/>
+              <TextBlock Grid.Row="2" Grid.Column="2" Text="$200.00" Foreground="White"/>
+              <TextBlock Grid.Row="2" Grid.Column="3" Text="Mike Johnson" Foreground="#2563eb"/>
+
+              <!-- Row 3 -->
+              <TextBlock Grid.Row="3" Grid.Column="0" Text="Content Writing" Foreground="White"/>
+              <TextBlock Grid.Row="3" Grid.Column="1" Text="Oct 5, 2023" Foreground="White"/>
+              <TextBlock Grid.Row="3" Grid.Column="2" Text="$150.00" Foreground="White"/>
+              <TextBlock Grid.Row="3" Grid.Column="3" Text="Emily Brown" Foreground="#2563eb"/>
+            </Grid>
+          </StackPanel>
+        </Border>
+
+      </StackPanel>
+    </Border>
+  </Grid>
+</Window>
