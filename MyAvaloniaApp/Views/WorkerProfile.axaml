@@ -1,9 +1,9 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Class="MyAvaloniaApp.Views.ClientProfile"
+        x:Class="MyAvaloniaApp.Views.WorkerProfile"
         Width="1024" Height="700"
         Background="#111827"
-        Title="Client Profile"
+        Title="Worker Profile"
         WindowStartupLocation="CenterScreen">
 
   <Grid>
@@ -26,12 +26,13 @@
                 Spacing="10"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">
-      <Button Content="Home" Background="#1f2937" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
-      <Button Content="My Requests" Background="#1f2937" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
-      <Button Content="Task execution" Background="#1f2937" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
-      <Button Content="Questions" Background="#1f2937" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
-      <Button Content="Profile" Background="#2563eb" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
-      <Button Content="Log out" Background="#1f2937" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
+      <Button Content="Home" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="My offers" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Open requests" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Task Execution" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Questions" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Profile" Background="#2563eb" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Log out" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
     </StackPanel>
 
     <!-- Backdrop Panel -->
@@ -124,6 +125,7 @@
                        Watermark="Current Password"
                        Background="#374151"
                        Foreground="White"
+                       Margin = "0,0,20,0"
                        BorderBrush="#425f9e"
                        Height="30"/>
               <TextBox Grid.Row="0" Grid.Column="1"
@@ -154,79 +156,105 @@
           </StackPanel>
         </Border>
 
-        <!-- Payment Information -->
+        <!-- Speciality / Locations / Availability Section -->
         <Border Background="#111827"
                 BorderBrush="#425f9e"
                 BorderThickness="1"
                 CornerRadius="6"
                 Padding="16">
           <StackPanel Spacing="16">
-            <TextBlock Text="Payment Information"
-                       FontSize="16"
-                       FontWeight="Bold"
-                       Foreground="White"/>
-
-            <Grid RowSpacing="6" ColumnSpacing="6">
-              <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-              </Grid.RowDefinitions>
+            <Grid ColumnSpacing="24">
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
               </Grid.ColumnDefinitions>
 
-              <!-- Visa -->
-              <TextBlock Grid.Row="0" Grid.Column="0"
-                         Text="Visa ending in **** 1234"
-                         Foreground="White"
-                         FontSize="12"/>
-              <TextBlock Grid.Row="0" Grid.Column="1"
-                         Text="Expires 12/24"
-                         Foreground="Gray"
-                         FontSize="11"/>
-              <Button Grid.Row="0" Grid.Column="2"
-                      Content="Edit"
-                      Background="Transparent"
-                      Foreground="#2563eb"
-                      BorderBrush="Transparent"
-                      Padding="4,2"
-                      FontSize="12"
-                      CornerRadius="6"/>
+              <!-- Speciality -->
+              <StackPanel Grid.Column="0" Spacing="8">
+                <TextBlock Text="Speciality"
+                           FontSize="14"
+                           FontWeight="Bold"
+                           Foreground="White"/>
+                <Border Background="#1f2937"
+                        CornerRadius="4"
+                        Padding="8"
+                        Height="80">
+                  <StackPanel Spacing="4">
+                    <TextBlock Text="#Plumbing" Foreground="#2563eb" FontSize="12"/>
+                    <TextBlock Text="#Electrical" Foreground="#2563eb" FontSize="12"/>
+                    <TextBlock Text="#Web Development" Foreground="#2563eb" FontSize="12"/>
+                  </StackPanel>
+                </Border>
+                <Button Content="Edit"
+                        Background="#2563eb"
+                        Foreground="White"
+                        Padding="6,4"
+                        BorderBrush="Transparent"
+                        CornerRadius="6"
+                        HorizontalAlignment="Center"/>
+              </StackPanel>
 
-              <!-- PayPal -->
-              <TextBlock Grid.Row="1" Grid.Column="0"
-                         Text="PayPal   john@example.com"
-                         Foreground="White"
-                         FontSize="12"/>
-              <Button Grid.Row="1" Grid.Column="2"
-                      Content="Edit"
-                      Background="Transparent"
-                      Foreground="#2563eb"
-                      BorderBrush="Transparent"
-                      Padding="4,2"
-                      FontSize="12"
-                      CornerRadius="6"/>
+              <!-- Service Locations -->
+              <StackPanel Grid.Column="1" Spacing="8">
+                <TextBlock Text="Service Locations"
+                           FontSize="14"
+                           FontWeight="Bold"
+                           Foreground="White"/>
+                <Border Background="#1f2937"
+                        CornerRadius="4"
+                        Padding="8"
+                        Height="80">
+                  <StackPanel Spacing="4">
+                    <TextBlock Text="#Remote" Foreground="#2563eb" FontSize="12"/>
+                    <TextBlock Text="#Cairo" Foreground="#2563eb" FontSize="12"/>
+                    <TextBlock Text="#6Th Of October" Foreground="#2563eb" FontSize="12"/>
+                  </StackPanel>
+                </Border>
+                <Button Content="Edit"
+                        Background="#2563eb"
+                        Foreground="White"
+                        Padding="6,4"
+                        BorderBrush="Transparent"
+                        CornerRadius="6"
+                        HorizontalAlignment="Center"/>
+              </StackPanel>
+
+              <!-- Availability -->
+              <StackPanel Grid.Column="2" Spacing="8">
+                <TextBlock Text="Availability"
+                           FontSize="14"
+                           FontWeight="Bold"
+                           Foreground="White"/>
+                <Border Background="#1f2937"
+                        CornerRadius="4"
+                        Padding="8"
+                        Height="80">
+                  <StackPanel Spacing="4">
+                    <TextBlock Text="Saturday 10:00 ‑ 20:00" Foreground="LightGray" FontSize="12"/>
+                    <TextBlock Text="Sunday 16:00 ‑ 20:00" Foreground="LightGray" FontSize="12"/>
+                  </StackPanel>
+                </Border>
+                <Button Content="Edit"
+                        Background="#2563eb"
+                        Foreground="White"
+                        Padding="6,4"
+                        BorderBrush="Transparent"
+                        CornerRadius="6"
+                        HorizontalAlignment="Center"/>
+              </StackPanel>
             </Grid>
-
-            <Button Content="Add Payment Method"
-                    Background="#2563eb"
-                    Foreground="White"
-                    Padding="10,4"
-                    BorderBrush="Transparent"
-                    CornerRadius="6"/>
           </StackPanel>
         </Border>
 
-        <!-- Spending History -->
+        <!-- Earning History -->
         <Border Background="#111827"
                 BorderBrush="#425f9e"
                 BorderThickness="1"
                 CornerRadius="6"
                 Padding="16">
           <StackPanel Spacing="12">
-            <TextBlock Text="Spending History"
+            <TextBlock Text="Earning History"
                        FontSize="16"
                        FontWeight="Bold"
                        Foreground="White"/>
@@ -246,10 +274,10 @@
               </Grid.ColumnDefinitions>
 
               <!-- Header -->
-              <TextBlock Grid.Row="0" Grid.Column="0" Text="Task Title" Foreground="#2563eb" FontSize="12" FontWeight="SemiBold"/>
-              <TextBlock Grid.Row="0" Grid.Column="1" Text="Date Completed" Foreground="#2563eb" FontSize="12" FontWeight="SemiBold"/>
-              <TextBlock Grid.Row="0" Grid.Column="2" Text="Amount Paid" Foreground="#2563eb" FontSize="12" FontWeight="SemiBold"/>
-              <TextBlock Grid.Row="0" Grid.Column="3" Text="Worker" Foreground="#4caf50" FontSize="12" FontWeight="SemiBold"/>
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="Task Title" Foreground="LightGray" FontSize="12" FontWeight="SemiBold"/>
+              <TextBlock Grid.Row="0" Grid.Column="1" Text="Date Completed" Foreground="LightGray" FontSize="12" FontWeight="SemiBold"/>
+              <TextBlock Grid.Row="0" Grid.Column="2" Text="Amount Earnt" Foreground="LightGray" FontSize="12" FontWeight="SemiBold"/>
+              <TextBlock Grid.Row="0" Grid.Column="3" Text="Client" Foreground="LightGray" FontSize="12" FontWeight="SemiBold"/>
 
               <!-- Row 1 -->
               <TextBlock Grid.Row="1" Grid.Column="0" Text="Website Design" Foreground="White" FontSize="12"/>
