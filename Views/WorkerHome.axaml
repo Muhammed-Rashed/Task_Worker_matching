@@ -1,0 +1,245 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="MyAvaloniaApp.Views.WorkerHome"
+        Width="800" Height="600"
+        Background="#111827"
+        Title="Worker Dashboard"
+        WindowStartupLocation="CenterScreen">
+
+  <Grid>
+    <!-- 5% / 90% / 5% rows -->
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0.05*"/>
+      <RowDefinition Height="0.9*"/>
+      <RowDefinition Height="0.05*"/>
+    </Grid.RowDefinitions>
+    <!-- 5% / 90% / 5% columns -->
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="0.05*"/>
+      <ColumnDefinition Width="0.9*"/>
+      <ColumnDefinition Width="0.05*"/>
+    </Grid.ColumnDefinitions>
+
+    <!-- 80%×80% backdrop -->
+    <Border Grid.Row="1" Grid.Column="1"
+            Background="#1f2937"
+            CornerRadius="25"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"/>
+    <!-- Navigation Bar on window background -->
+    <StackPanel Grid.Row="0" Grid.Column="1"
+                Orientation="Horizontal"
+                Spacing="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+      <Button Content="Home" Background="#2563eb" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
+      <Button Content="My Offers" Background="#1f2937" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
+      <Button Content="Open Requests" Background="#1f2937" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
+      <Button Content="Task Execution" Background="#1f2937" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
+      <Button Content="Questions" Background="#1f2937" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
+      <Button Content="Profile" Background="#1f2937" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
+      <Button Content="Log out" Background="#1f2937" Foreground="White" Padding="8,4" BorderBrush="Transparent" CornerRadius="8"/>
+      
+    </StackPanel>
+    <!-- Main content panel (over backdrop) -->
+    <Border Grid.Row="1" Grid.Column="1"
+            Background="Transparent"
+            Padding="20"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+      <StackPanel Spacing="20" Margin="0,10,0,0">
+        <!-- Worker Dashboard Heading -->
+        <TextBlock Text="Worker Dashboard"
+                   FontSize="16"
+                   FontWeight="Bold"
+                   Foreground="White"
+                   Margin="0,0,0,0"/>
+
+        <!-- Four Stat Cards -->
+        <Grid ColumnSpacing="10">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+
+          <Border Grid.Column="0"
+                  Background="#111827"
+                  BorderBrush="#425f9e"
+                  BorderThickness="1"
+                  CornerRadius="6"
+                  Padding="10">
+            <StackPanel>
+              <TextBlock Text="Open Offers"
+                         Foreground="White"
+                         FontSize="12"/>
+              <TextBlock Text="12"
+                         Foreground="White"
+                         FontSize="24"
+                         FontWeight="Bold"/>
+            </StackPanel>
+          </Border>
+
+          <Border Grid.Column="1"
+                  Background="#111827"
+                  BorderBrush="#425f9e"
+                  BorderThickness="1"
+                  CornerRadius="6"
+                  Padding="10">
+            <StackPanel>
+              <TextBlock Text="Assigned Tasks"
+                         Foreground="White"
+                         FontSize="12"/>
+              <TextBlock Text="5"
+                         Foreground="White"
+                         FontSize="24"
+                         FontWeight="Bold"/>
+            </StackPanel>
+          </Border>
+
+          <Border Grid.Column="2"
+                  Background="#111827"
+                  BorderBrush="#425f9e"
+                  BorderThickness="1"
+                  CornerRadius="6"
+                  Padding="10">
+            <StackPanel Orientation="Horizontal" Spacing="4">
+              <TextBlock Text="★"
+                         Foreground="#2563eb"
+                         FontSize="20"/>
+              <TextBlock Text="4.8"
+                         Foreground="White"
+                         FontSize="24"
+                         FontWeight="Bold"/>
+            </StackPanel>
+          </Border>
+
+          <Border Grid.Column="3"
+                  Background="#111827"
+                  BorderBrush="#425f9e"
+                  BorderThickness="1"
+                  CornerRadius="6"
+                  Padding="10">
+            <StackPanel>
+              <TextBlock Text="Completion Rate"
+                         Foreground="White"
+                         FontSize="12"/>
+              <TextBlock Text="98%"
+                         Foreground="White"
+                         FontSize="24"
+                         FontWeight="Bold"/>
+            </StackPanel>
+          </Border>
+        </Grid>
+
+        <!-- Private Requests Section -->
+        <Border Background="#111827"
+                BorderBrush="#425f9e"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="10">
+          <StackPanel Spacing="10">
+            <TextBlock Text="Private Requests"
+                       FontSize="14"
+                       FontWeight="Bold"
+                       Foreground="White"/>
+
+            <!-- Search + Filter -->
+            <StackPanel Orientation="Horizontal" Spacing="6">
+              <TextBox Width="300"
+                       Background="#374151"
+                       Foreground="White"
+                       BorderBrush="Transparent"
+                       Height="30"
+                       Watermark="Search…"/>
+              <Button Content="Filter"
+                      Background="#2563eb"
+                      Foreground="White"
+                      Padding="8,0"
+                      BorderBrush="Transparent"/>
+            </StackPanel>
+
+            <!-- Scrollable List of Request Cards -->
+            <ScrollViewer Height="200">
+              <StackPanel Spacing="8">
+                <!-- Request Card 1 -->
+                <Border Background="#1f2937"
+                        CornerRadius="6"
+                        Padding="10">
+                  <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel>
+                      <TextBlock Text="Website Development"
+                                 Foreground="White"
+                                 FontWeight="Bold"/>
+                      <TextBlock Text="E‑commerce site development with React"
+                                 Foreground="LightGray"
+                                 FontSize="11"
+                                 Margin="0,4,0,0"/>
+                    </StackPanel>
+                    <Button Content="View Details"
+                            Background="#2563eb"
+                            Foreground="White"
+                            Padding="8,4"
+                            BorderBrush="Transparent"
+                            HorizontalAlignment="Right"/>
+                  </Grid>
+                </Border>
+
+                <!-- Request Card 2 -->
+                <Border Background="#1f2937"
+                        CornerRadius="6"
+                        Padding="10">
+                  <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel>
+                      <TextBlock Text="Mobile App Design"
+                                 Foreground="White"
+                                 FontWeight="Bold"/>
+                      <TextBlock Text="UI/UX design for fitness tracking app"
+                                 Foreground="LightGray"
+                                 FontSize="11"
+                                 Margin="0,4,0,0"/>
+                    </StackPanel>
+                    <Button Content="View Details"
+                            Background="#2563eb"
+                            Foreground="White"
+                            Padding="8,4"
+                            BorderBrush="Transparent"
+                            HorizontalAlignment="Right"/>
+                  </Grid>
+                </Border>
+
+                <!-- Request Card 3 -->
+                <Border Background="#1f2937"
+                        CornerRadius="6"
+                        Padding="10">
+                  <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel>
+                      <TextBlock Text="Database Migration"
+                                 Foreground="White"
+                                 FontWeight="Bold"/>
+                      <TextBlock Text="PostgreSQL to MongoDB migration"
+                                 Foreground="LightGray"
+                                 FontSize="11"
+                                 Margin="0,4,0,0"/>
+                    </StackPanel>
+                    <Button Content="View Details"
+                            Background="#2563eb"
+                            Foreground="White"
+                            Padding="8,4"
+                            BorderBrush="Transparent"
+                            HorizontalAlignment="Right"/>
+                  </Grid>
+                </Border>
+
+              </StackPanel>
+            </ScrollViewer>
+
+          </StackPanel>
+        </Border>
+
+      </StackPanel>
+    </Border>
+
+  </Grid>
+</Window>

@@ -1,0 +1,126 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="MyAvaloniaApp.Views.WorkerSignUp"
+        Width="800" Height="600"
+        Background="#111827"
+        Title="Worker Registration"
+        WindowStartupLocation="CenterScreen">
+
+  <Grid>
+    <!-- 5% / 90% / 5% rows -->
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0.05*" />
+      <RowDefinition Height="0.9*" />
+      <RowDefinition Height="0.05*" />
+    </Grid.RowDefinitions>
+    <!-- 5% / 90% / 5% columns -->
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="0.05*" />
+      <ColumnDefinition Width="0.9*" />
+      <ColumnDefinition Width="0.05*" />
+    </Grid.ColumnDefinitions>
+
+    <!-- 80%×80% backdrop -->
+    <Border Grid.Row="1" Grid.Column="1"
+            Background="#1f2937"
+            CornerRadius="25"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch" />
+
+    <!-- Worker Registration form panel -->
+    <Border Grid.Row="1" Grid.Column="1"
+            Width="400"
+            Height = "650"
+            Padding="20"
+            Background="#111827"
+            BorderBrush="#425f9e"
+            BorderThickness="1"
+            CornerRadius="12"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+
+      <StackPanel Spacing="10">
+        <!-- Header -->
+        <TextBlock Text="Worker Registration"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Foreground="#2563eb"
+                   HorizontalAlignment="Center"/>
+
+        <!-- Personal Information -->
+        <TextBlock Text="Personal Information"
+                   FontSize="14"
+                   FontWeight="Bold"
+                   Foreground="White"
+                   Margin="0,8,0,4"/>
+        <TextBlock Text="Full Name" Foreground="White" FontSize="12"/>
+        <TextBox Background="#374151"
+                 Foreground="White"
+                 BorderBrush="Transparent"
+                 Height="30"/>
+        <TextBlock Text="Phone Number" Foreground="White" FontSize="12"/>
+        <TextBox Background="#374151"
+                 Foreground="White"
+                 BorderBrush="Transparent"
+                 Height="30"/>
+        <TextBlock Text="Email Address" Foreground="White" FontSize="12"/>
+        <TextBox Background="#374151"
+                 Foreground="White"
+                 BorderBrush="Transparent"
+                 Height="30"/>
+        <TextBlock Text="Password" Foreground="White" FontSize="12"/>
+        <TextBox Background="#374151"
+                 Foreground="White"
+                 BorderBrush="Transparent"
+                 Height="30"
+                 PasswordChar="●"/>
+
+        <!-- Professional Details -->
+        <TextBlock Text="Professional Details"
+                   FontSize="14"
+                   FontWeight="Bold"
+                   Foreground="White"
+                   Margin="0,12,0,4"/>
+        <TextBlock Text="Specialties" Foreground="White" FontSize="12"/>
+        <TextBox Background="#374151"
+                 Foreground="White"
+                 BorderBrush="Transparent"
+                 Height="30"/>
+
+        <!-- Service Locations -->
+        <TextBlock Text="Service Locations" Foreground="White" FontSize="12"/>
+        <Border Background="#374151"
+                CornerRadius="12"
+                Padding="4,2"
+                Cursor="Hand">
+          <TextBlock Text="+ Add" Foreground="White" FontSize="12"/>
+        </Border>
+
+        <!-- Create Account Button -->
+        <Button Content="Create account"
+                Background="#2563eb"
+                Foreground="White"
+                FontWeight="Bold"
+                Height="35"
+                Margin="0,12,0,0"
+                BorderBrush="Transparent"/>
+
+        <!-- Already have an account? Sign in -->
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,8,0,0">
+          <TextBlock Text="Already have an account? "
+                     Foreground="LightGray"
+                     FontSize="11"/>
+          <Button Content="Sign in"
+                  Background="Transparent"
+                  BorderBrush="Transparent"
+                  Foreground="#2563eb"
+                  FontSize="11"
+                  Padding="0"
+                  Cursor="Hand"/>
+        </StackPanel>
+      </StackPanel>
+    </Border>
+  </Grid>
+</Window>

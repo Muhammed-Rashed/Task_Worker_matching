@@ -1,0 +1,98 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="MyAvaloniaApp.Views.Login"
+        Width="800" Height="600"
+        Background="#111827"
+        Title="Sign in"
+        WindowStartupLocation="CenterScreen">
+
+  <Grid>
+    <!-- 10% / 80% / 10% rows -->
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0.05*" />
+      <RowDefinition Height="0.9*" />
+      <RowDefinition Height="0.05*" />
+    </Grid.RowDefinitions>
+    <!-- 10% / 80% / 10% columns -->
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="0.05*" />
+      <ColumnDefinition Width="0.9*" />
+      <ColumnDefinition Width="0.05*" />
+    </Grid.ColumnDefinitions>
+
+    <!-- 80%×80% backdrop -->
+    <Border Grid.Row="1" Grid.Column="1"
+            Background="#1f2937"
+            CornerRadius="25"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch" />
+
+    <!-- Sign‑in form panel -->
+    <Border Grid.Row="1" Grid.Column="1"
+            Width="400" Height="350"
+            Padding="30"
+            Background="#111827"
+            BorderBrush="#425f9e"
+            BorderThickness="1"
+            CornerRadius="6"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+      
+      <StackPanel Spacing="16">
+
+        <!-- Header -->
+        <TextBlock Text="Sign in"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Foreground="#2563eb"
+                   HorizontalAlignment="Center"/>
+
+        <!-- Email Address -->
+        <TextBlock Text="Email Address"
+                   Foreground="White"
+                   FontSize="12"/>
+        <TextBox Background="#374151"
+                 Foreground="Black"
+                 BorderBrush="Transparent"
+                 Height="30"/>
+
+        <!-- Password -->
+        <TextBlock Text="Password"
+                   Foreground="White"
+                   FontSize="12"/>
+        <TextBox Background="#374151"
+                 Foreground="Black"
+                 BorderBrush="Transparent"
+                 Height="30"
+                 PasswordChar="●"/>
+
+        <!-- Login Button -->
+        <Button Content="Login"
+                Background="#2563eb"
+                Foreground="White"
+                FontWeight="Bold"
+                Height="35"
+                HorizontalAlignment="Center"
+                Margin="0,12,0,0"
+                BorderBrush="Transparent"/>
+
+        <!-- Don't Have an account? Sign up -->
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,8,0,0">
+          <TextBlock Text="Don't have an account? "
+                     Foreground="LightGray"
+                     FontSize="11"/>
+          <Button Background="Transparent"
+                  BorderBrush="Transparent"
+                  Foreground="#2563eb"
+                  FontSize="11"
+                  Padding="0"
+                  Content="Sign up"
+                  Cursor="Hand"/>
+        </StackPanel>
+
+      </StackPanel>
+    </Border>
+  </Grid>
+</Window>
