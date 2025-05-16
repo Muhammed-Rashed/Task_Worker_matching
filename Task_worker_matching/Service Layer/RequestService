@@ -24,7 +24,7 @@ class RequestService
     {
         if(isValidItem(item))
         {
-            return cache.delete(item);
+            return cache.update(item);
         }
         return false;
     }
