@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+
+class RequestService
+{
+    private cache<Request>;
+    
+    public isValidItem(Request item)
+    {
+        return (item.getClientID() != null && item.getLocation() != null &&
+                item.getStatus() != null && item.getPlacemntTime() != null && item.getTask() != null);
+    }
+    
+    public bool add(Request item)
+    {
+        if (isValidItem(item))
+        {
+            cache.add(item);
+            return true;
+        }
+        return false;
+    }
+    
+    public bool update(Request new_item, Request old_item)
+    {
+        if(isValidItem(item))
+        {
+            cache.delete(item);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public bool delete(Request item)
+    {
+        if(isValidItem(item))
+        {
+            cache.delete(item);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public List<Request> get_data()
+    {
+        return cache.get_date();
+    }
+}
