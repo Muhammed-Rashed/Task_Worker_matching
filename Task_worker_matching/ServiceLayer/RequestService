@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 class RequestService
 {
-    private cache<Request>;
+    private Cache cache<Request>;
     
     public isValidItem(Request item)
     {
