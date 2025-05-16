@@ -1,11 +1,13 @@
-﻿using System;
-using Task_worker_matching.Memory_Layer;
+using System;
 
 public class Offer
 {
     private int id;
+    
+    // Pointer to Worker and Request using unsafe code
     private Worker worker;
     private Request request;
+    
     private DateTime expirationTime;
     private TimeSpan time;
     private double fee;
