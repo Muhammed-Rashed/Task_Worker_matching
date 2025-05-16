@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 class TaskService
 {
-    private Cache cache<Task>;
+    private Cache<Task> cache;
     
     public isValidItem(Task item)
     {
