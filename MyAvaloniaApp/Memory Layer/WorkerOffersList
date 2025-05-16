@@ -5,7 +5,7 @@ class WorkerOffersList
 {
     private List<Offer> offers = new List<Offer>();
 
-    public bool Add(Offer item)
+    public bool add(Offer item)
     {
         if (item != null)
         {
@@ -14,7 +14,7 @@ class WorkerOffersList
         return false;
     }
 
-    public bool Update(Offer newItem, Offer oldItem)
+    public bool update(Offer newItem, Offer oldItem)
     {
         int index = offers.IndexOf(oldItem);
         if (index != -1)
@@ -25,7 +25,7 @@ class WorkerOffersList
         return false;
     }
 
-    public bool Delete(Offer item)
+    public bool delete(Offer item)
     {
         if(item != null)
         {
@@ -34,12 +34,12 @@ class WorkerOffersList
         return false;
     }
 
-    public List<Offer> GetData()
+    public List<Offer> get_data()
     {
         return offers;
     }
 
-    public void SetData(List<Offer> newOffers)
+    public void set_data(List<Offer> newOffers)
     {
         offers = newOffers;
     }
@@ -49,7 +49,7 @@ class WorkerOffersList
         return offers.Count == 0;
     }
 
-    public Offer GetById(int id)
+    public Offer get_byID(int id)
     {
         foreach (var offer in offers)
         {
