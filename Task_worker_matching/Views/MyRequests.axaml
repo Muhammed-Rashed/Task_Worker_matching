@@ -1,0 +1,189 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="MyAvaloniaApp.Views.MyRequests"
+        Width="1024" Height="700"
+        Background="#111827"
+        Title="My Requests"
+        WindowStartupLocation="CenterScreen">
+
+  <Grid>
+    <!-- 5% / 90% / 5% rows -->
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0.05*"/>
+      <RowDefinition Height="0.9*"/>
+      <RowDefinition Height="0.05*"/>
+    </Grid.RowDefinitions>
+    <!-- 5% / 90% / 5% columns -->
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="0.05*"/>
+      <ColumnDefinition Width="0.9*"/>
+      <ColumnDefinition Width="0.05*"/>
+    </Grid.ColumnDefinitions>
+
+    <!-- Navigation Bar -->
+    <StackPanel Grid.Row="0" Grid.Column="1"
+                Orientation="Horizontal"
+                Spacing="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+      <Button Content="Home" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="My Requests" Background="#2563eb" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Task Execution" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Questions" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Profile" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Log out" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+    </StackPanel>
+
+    <!-- Backdrop Panel -->
+    <Border Grid.Row="1" Grid.Column="1"
+            Background="#1f2937"
+            CornerRadius="25"/>
+
+    <!-- Main Content -->
+    <Border Grid.Row="1" Grid.Column="1"
+            Background="Transparent"
+            Padding="24">
+      <StackPanel Spacing="24">
+
+        <!-- Service Requests Section -->
+        <Border Background="#111827"
+                BorderBrush="#425f9e"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="16">
+          <StackPanel Spacing="12">
+            <TextBlock Text="Service Requests"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Foreground="White"/>
+
+            <!-- Scrollable Table -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="650">
+              <StackPanel>
+
+                <!-- Header Row -->
+                <Grid ColumnSpacing="6">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                  </Grid.ColumnDefinitions>
+                  <TextBlock Grid.Column="0" Text="Request ID" Foreground="LightGray" FontSize="12" FontWeight="SemiBold"/>
+                  <TextBlock Grid.Column="1" Text="Task" Foreground="LightGray" FontSize="12" FontWeight="SemiBold"/>
+                  <TextBlock Grid.Column="2" Text="Date Placed" Foreground="LightGray" FontSize="12" FontWeight="SemiBold"/>
+                  <TextBlock Grid.Column="3" Text="Status" Foreground="LightGray" FontSize="12" FontWeight="SemiBold"/>
+                  <TextBlock Grid.Column="4" Text="Actions" Foreground="LightGray" FontSize="12" FontWeight="SemiBold"/>
+                </Grid>
+
+                <!-- Row 1: In Progress -->
+                <Border Background="#1f2937" CornerRadius="4" Padding="6" Margin="0,4,0,0">
+                  <Grid ColumnSpacing="6">
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="2*"/>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="#SR001" Foreground="White" FontSize="12"/>
+                    <TextBlock Grid.Column="1" Text="Plumbing repair" Foreground="White" FontSize="12"/>
+                    <TextBlock Grid.Column="2" Text="2024‑01‑15" Foreground="White" FontSize="12"/>
+                    <TextBlock Grid.Column="3" Text="In Progress" Foreground="#f2cf39" FontSize="12"/>
+
+                    <StackPanel Grid.Column="4" Orientation="Horizontal" Spacing="6">
+                      <Button Content="View Details"
+                              Background="#2563eb"
+                              Foreground="White"
+                              Padding="6,2"
+                              CornerRadius="6"
+                              BorderBrush="Transparent"
+                              FontSize="10"/>
+                      <Button Content="Cancel"
+                              Background="#1f2937"
+                              Foreground="Red"
+                              Padding="6,2"
+                              CornerRadius="6"
+                              BorderBrush="Red"
+                              BorderThickness="1"
+                              FontSize="10"/>
+                    </StackPanel>
+                  </Grid>
+                </Border>
+
+                <!-- Row 2: Completed -->
+                <Border Background="#1f2937" CornerRadius="4" Padding="6" Margin="0,4,0,0">
+                  <Grid ColumnSpacing="6">
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="2*"/>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="#SR002" Foreground="White" FontSize="12"/>
+                    <TextBlock Grid.Column="1" Text="Logo Design" Foreground="White" FontSize="12"/>
+                    <TextBlock Grid.Column="2" Text="2024‑01‑10" Foreground="White" FontSize="12"/>
+                    <TextBlock Grid.Column="3" Text="Completed" Foreground="#22c55e" FontSize="12"/>
+
+                    <!-- No Cancel button for completed -->
+                    <StackPanel Grid.Column="4" Orientation="Horizontal" Spacing="6">
+                      <Button Content="View Details"
+                              Background="#2563eb"
+                              Foreground="White"
+                              Padding="6,2"
+                              CornerRadius="6"
+                              BorderBrush="Transparent"
+                              FontSize="10"/>
+                    </StackPanel>
+                  </Grid>
+                </Border>
+
+                <!-- Row 3: Pending -->
+                <Border Background="#1f2937" CornerRadius="4" Padding="6" Margin="0,4,0,0">
+                  <Grid ColumnSpacing="6">
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="2*"/>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="#SR003" Foreground="White" FontSize="12"/>
+                    <TextBlock Grid.Column="1" Text="Content Writing" Foreground="White" FontSize="12"/>
+                    <TextBlock Grid.Column="2" Text="2024‑01‑05" Foreground="White" FontSize="12"/>
+                    <TextBlock Grid.Column="3" Text="Pending" Foreground="#60a5fa" FontSize="12"/>
+
+                    <StackPanel Grid.Column="4" Orientation="Horizontal" Spacing="6">
+                      <Button Content="View Details"
+                              Background="#2563eb"
+                              Foreground="White"
+                              Padding="6,2"
+                              CornerRadius="6"
+                              BorderBrush="Transparent"
+                              FontSize="10"/>
+                      <Button Content="Cancel"
+                              Background="#1f2937"
+                              Foreground="Red"
+                              Padding="6,2"
+                              CornerRadius="6"
+                              BorderBrush="Red"
+                              BorderThickness="1"
+                              FontSize="10"/>
+                    </StackPanel>
+                  </Grid>
+                </Border>
+
+              </StackPanel>
+            </ScrollViewer>
+          </StackPanel>
+        </Border>
+
+      </StackPanel>
+    </Border>
+  </Grid>
+</Window>
