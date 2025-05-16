@@ -1,0 +1,10 @@
+using System;
+using System.Collections.Generic;
+
+public interface IDataService<T>
+{
+    bool add(T item);
+    bool update(T new_item, old_item);
+    bool delete(T item);
+    List<T> get_data();
+}
