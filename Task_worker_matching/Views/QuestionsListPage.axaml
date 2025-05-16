@@ -1,0 +1,57 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="https://github.com/avaloniaui"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:MyAvaloniaApp.ViewModels"
+             x:Class="MyAvaloniaApp.Views.QuestionsPage"
+             mc:Ignorable="d"
+             x:DataType="vm:QuestionsPageViewModel">
+    <UserControl.DataContext>
+        <vm:QuestionsPageViewModel/>
+    </UserControl.DataContext>
+
+    <Grid Background="#111827" Margin="20">
+        <DockPanel LastChildFill="True">
+
+            <!-- Top Navigation -->
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Spacing="10">
+                <Button Content="Home"/>
+                <Button Content="My Requests"/>
+                <Button Content="Questions" Background="#2563eb" Foreground="White"/>
+                <Button Content="Profile"/>
+                <Button Content="Log out"/>
+            </StackPanel>
+
+            <!-- Questions Content -->
+            <ScrollViewer Margin="0,20,0,0">
+                <StackPanel Spacing="20">
+
+                    <Button Content="Post Question" 
+                            HorizontalAlignment="Left" 
+                            Background="#2563eb" 
+                            Foreground="White"/>
+
+                    <!-- Dynamic Questions -->
+                    <ItemsControl Items="{Binding Questions}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="#1e293b" CornerRadius="10" Padding="15" Margin="0,0,0,10">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Title}" FontWeight="Bold" Foreground="White"/>
+                                        <TextBlock Text="{Binding Summary}" Foreground="#94a3b8" Margin="0,5"/>
+                                        <Button Content="View Thread" 
+                                                HorizontalAlignment="Right" 
+                                                Margin="0,10,0,0" 
+                                                Background="#2563eb" 
+                                                Foreground="White"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                </StackPanel>
+            </ScrollViewer>
+        </DockPanel>
+    </Grid>
+</UserControl>

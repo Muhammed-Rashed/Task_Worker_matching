@@ -1,0 +1,59 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Task_worker_matching.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Task_worker_matching.Views.ThreadPage"
+             x:DataType="vm:ThreadPageViewModel">
+  
+    <UserControl.DataContext>
+        <vm:ThreadPageViewModel/>
+    </UserControl.DataContext>
+
+    <Grid Background="#0f172a" Margin="20">
+        <DockPanel LastChildFill="True">
+
+            <!-- Top Navigation -->
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Spacing="10">
+                <Button Content="Home"/>
+                <Button Content="My Requests"/>
+                <Button Content="Questions" Background="#3b82f6" Foreground="White"/>
+                <Button Content="Profile"/>
+                <Button Content="Log out"/>
+            </StackPanel>
+
+            <!-- Back Arrow -->
+            <Button Content="← Back" HorizontalAlignment="Left" Margin="0,20,0,0" Click="BackButton_Click"/>
+
+            <!-- Thread Content -->
+            <ScrollViewer Margin="0,60,0,0">
+                <StackPanel Spacing="20">
+
+                    <!-- Question -->
+                    <Border Background="#1e293b" CornerRadius="10" Padding="15">
+                        <StackPanel>
+                            <TextBlock Text="{Binding QuestionTitle}" FontWeight="Bold" Foreground="White"/>
+                            <TextBlock Text="{Binding QuestionBody}" Foreground="#94a3b8" Margin="0,5"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Answers -->
+                    <ItemsControl Items="{Binding Answers}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="#1e293b" CornerRadius="10" Padding="15" Margin="0,0,0,10">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Author}" FontWeight="Bold" Foreground="LightGreen"/>
+                                        <TextBlock Text="{Binding Content}" Foreground="#94a3b8" Margin="5,5,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                </StackPanel>
+            </ScrollViewer>
+        </DockPanel>
+    </Grid>
+</UserControl>
