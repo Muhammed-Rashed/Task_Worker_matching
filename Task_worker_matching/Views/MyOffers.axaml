@@ -1,0 +1,105 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="MyAvaloniaApp.Views.MyOffers"
+        Width="800" Height="600"
+        Background="#111827"
+        Title="My Offers"
+        WindowStartupLocation="CenterScreen">
+
+  <Grid>
+    <!-- 5% / 90% / 5% rows -->
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0.05*"/>
+      <RowDefinition Height="0.9*"/>
+      <RowDefinition Height="0.05*"/>
+    </Grid.RowDefinitions>
+    <!-- 5% / 90% / 5% columns -->
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="0.05*"/>
+      <ColumnDefinition Width="0.9*"/>
+      <ColumnDefinition Width="0.05*"/>
+    </Grid.ColumnDefinitions>
+
+    <!-- Navigation Bar -->
+    <StackPanel Grid.Row="0" Grid.Column="1"
+                Orientation="Horizontal"
+                Spacing="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+      <Button Content="Home" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="My Offers" Background="#2563eb" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Open Requests" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Task Execution" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Question" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Profile" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Log Out" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+    </StackPanel>
+
+    <!-- Backdrop Panel -->
+    <Border Grid.Row="1" Grid.Column="1"
+            Background="#1f2937"
+            CornerRadius="25"
+            Padding="20">
+      <StackPanel Spacing="16">
+
+        <!-- Heading -->
+        <TextBlock Text="My Offers" FontSize="18" FontWeight="Bold" Foreground="White"/>
+
+        <!-- Scrollable Offer Cards -->
+        <ScrollViewer Height="650" VerticalScrollBarVisibility="Auto">
+          <StackPanel Spacing="16">
+
+            <!-- Offer Card -->
+            <Border Background="#111827" CornerRadius="8" Padding="16" BorderBrush="#425f9e" BorderThickness="1">
+              <StackPanel Spacing="8">
+                <TextBlock Text="Website Redesign Project" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Client: John Smith" Foreground="LightGray" FontSize="12"/>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <TextBlock Text="📍 Remote" Foreground="LightGray" FontSize="12"/>
+                  <TextBlock Text="💲 $500" Foreground="LightGray" FontSize="12"/>
+                  <TextBlock Text="📅 Sent: Oct 15, 2023" Foreground="LightGray" FontSize="12"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <Button Content="View Request" Background="#2563eb" Foreground="White" Padding="6,2" BorderBrush="Transparent"/>
+                  <Button Content="Cancel Offer" Background="#111827" Foreground="Red" Padding="6,2" BorderBrush="Red" BorderThickness="1"/>
+                </StackPanel>
+                <TextBlock Text="Pending" Foreground="#f2cf39" HorizontalAlignment="Right"/>
+              </StackPanel>
+            </Border>
+
+            <!-- Repeat the card for other offers -->
+            <Border Background="#111827" CornerRadius="8" Padding="16" BorderBrush="#425f9e" BorderThickness="1">
+              <StackPanel Spacing="8">
+                <TextBlock Text="Mobile App Development" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Client: Tech Solutions Inc" Foreground="LightGray" FontSize="12"/>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <TextBlock Text="📍 New York, NY" Foreground="LightGray" FontSize="12"/>
+                  <TextBlock Text="💲 $2,000" Foreground="LightGray" FontSize="12"/>
+                  <TextBlock Text="📅 Sent: Oct 10, 2023" Foreground="LightGray" FontSize="12"/>
+                </StackPanel>
+                <Button Content="View Request" Background="#2563eb" Foreground="White" Padding="6,2" BorderBrush="Transparent"/>
+                <TextBlock Text="Accepted" Foreground="#22c55e" HorizontalAlignment="Right"/>
+              </StackPanel>
+            </Border>
+
+            <Border Background="#111827" CornerRadius="8" Padding="16" BorderBrush="#425f9e" BorderThickness="1">
+              <StackPanel Spacing="8">
+                <TextBlock Text="Logo Design Project" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Client: Creative Agency" Foreground="LightGray" FontSize="12"/>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <TextBlock Text="📍 Remote" Foreground="LightGray" FontSize="12"/>
+                  <TextBlock Text="💲 $300" Foreground="LightGray" FontSize="12"/>
+                  <TextBlock Text="📅 Sent: Oct 5, 2023" Foreground="LightGray" FontSize="12"/>
+                </StackPanel>
+                <Button Content="View Request" Background="#2563eb" Foreground="White" Padding="6,2" BorderBrush="Transparent"/>
+                <TextBlock Text="Declined" Foreground="#dc2626" HorizontalAlignment="Right"/>
+              </StackPanel>
+            </Border>
+
+          </StackPanel>
+        </ScrollViewer>
+
+      </StackPanel>
+    </Border>
+  </Grid>
+</Window>

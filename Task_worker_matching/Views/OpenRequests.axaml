@@ -1,0 +1,89 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="MyAvaloniaApp.Views.OpenRequests"
+        Width="800" Height="600"
+        Background="#111827"
+        Title="Open Requests"
+        WindowStartupLocation="CenterScreen">
+
+  <Grid>
+    <!-- 5% / 90% / 5% rows -->
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0.05*"/>
+      <RowDefinition Height="0.9*"/>
+      <RowDefinition Height="0.05*"/>
+    </Grid.RowDefinitions>
+    <!-- 5% / 90% / 5% columns -->
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="0.05*"/>
+      <ColumnDefinition Width="0.9*"/>
+      <ColumnDefinition Width="0.05*"/>
+    </Grid.ColumnDefinitions>
+
+    <!-- Navigation Bar -->
+    <StackPanel Grid.Row="0" Grid.Column="1"
+                Orientation="Horizontal"
+                Spacing="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+      <Button Content="Home" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="My Offers" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Open Requests" Background="#2563eb" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Task Execution" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Question" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Profile" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Log Out" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+    </StackPanel>
+
+    <!-- Backdrop Panel -->
+    <Border Grid.Row="1" Grid.Column="1"
+            Background="#1f2937"
+            CornerRadius="25"
+            Padding="20">
+      <StackPanel Spacing="16">
+
+        <!-- Heading with Filter Button -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+          <TextBlock Text="Open Requests" FontSize="18" FontWeight="Bold" Foreground="White"/>
+          <Button Content="Filter Requests" Background="#2563eb" Foreground="White" Padding="6,2" BorderBrush="Transparent" HorizontalAlignment="Right"/>
+        </StackPanel>
+
+        <!-- Scrollable Request Cards -->
+        <ScrollViewer Height="650" VerticalScrollBarVisibility="Auto">
+          <StackPanel Spacing="16">
+
+            <!-- Request Card 1 -->
+            <Border Background="#111827" CornerRadius="8" Padding="16" BorderBrush="#425f9e" BorderThickness="1">
+              <StackPanel Spacing="8">
+                <TextBlock Text="House Cleaning Service Needed" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="General Request" FontSize="12" Foreground="#60a5fa" Background="#1e293b" Padding="2,1" Margin="0,4,0,0" HorizontalAlignment="Left"/>
+                <TextBlock Text="📍 Brooklyn, NY" Foreground="LightGray" FontSize="12"/>
+                <TextBlock Text="📅 Sept 25, 2023 - 10:00 AM" Foreground="LightGray" FontSize="12"/>
+                <TextBlock Text="3 bedroom apartment, deep cleaning required including kitchen and bathrooms" Foreground="LightGray" FontSize="12"/>
+                <TextBlock Text="💲 $150 - $200" Foreground="LightGray" FontSize="12"/>
+                <TextBlock Text="⏳ Posted 2 hours ago" Foreground="LightGray" FontSize="12"/>
+                <Button Content="Send Offer" Background="#2563eb" Foreground="White" Padding="6,2" BorderBrush="Transparent" HorizontalAlignment="Right"/>
+              </StackPanel>
+            </Border>
+
+            <!-- Request Card 2 -->
+            <Border Background="#111827" CornerRadius="8" Padding="16" BorderBrush="#425f9e" BorderThickness="1">
+              <StackPanel Spacing="8">
+                <TextBlock Text="Furniture Assembly Help" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="General Request" FontSize="12" Foreground="#60a5fa" Background="#1e293b" Padding="2,1" Margin="0,4,0,0" HorizontalAlignment="Left"/>
+                <TextBlock Text="📍 Manhattan, NY" Foreground="LightGray" FontSize="12"/>
+                <TextBlock Text="📅 Sept 26, 2023 - 2:00 PM" Foreground="LightGray" FontSize="12"/>
+                <TextBlock Text="Assembly of IKEA furniture: 2 wardrobes and a bed frame" Foreground="LightGray" FontSize="12"/>
+                <TextBlock Text="💲 $120 - $180" Foreground="LightGray" FontSize="12"/>
+                <TextBlock Text="⏳ Posted 4 hours ago" Foreground="LightGray" FontSize="12"/>
+                <Button Content="Send Offer" Background="#2563eb" Foreground="White" Padding="6,2" BorderBrush="Transparent" HorizontalAlignment="Right"/>
+              </StackPanel>
+            </Border>
+
+          </StackPanel>
+        </ScrollViewer>
+
+      </StackPanel>
+    </Border>
+  </Grid>
+</Window>
