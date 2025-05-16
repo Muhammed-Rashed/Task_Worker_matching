@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+namespace Task_worker_matching.Memory_Layer;
 
 class WorkerOffersList
 {

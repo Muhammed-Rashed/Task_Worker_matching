@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 
+namespace Task_worker_matching.Memory_Layer;
+
 public class Question
 {
     private User asker;
@@ -37,7 +39,7 @@ public class Question
     {
         answers.AddLast(answer);
     }
-    }
+}
     
 
     

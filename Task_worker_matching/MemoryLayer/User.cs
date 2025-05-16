@@ -1,3 +1,5 @@
+namespace Task_worker_matching.Memory_Layer;
+
 public class User
 {
     private string name;
@@ -30,5 +32,5 @@ public class User
     public void set_password(string password) => this.password = password;
     public void set_user_ID(string id) => this.user_ID = id;
     public void set_overall_rating(double rating) => this.overall_rating = rating;
-    
+
 }

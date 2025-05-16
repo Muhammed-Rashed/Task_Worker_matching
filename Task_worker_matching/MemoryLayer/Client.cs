@@ -1,3 +1,5 @@
+namespace Task_worker_matching.Memory_Layer;
+
 public class Client : User
 {
     private string payment_info;

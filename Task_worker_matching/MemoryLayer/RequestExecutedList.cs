@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+namespace Task_worker_matching.Memory_Layer;
+
 class RequestExecutedList
 {
     private List<RequestExecuted> requestExecuted = new List<RequestExecuted>();
@@ -55,7 +57,7 @@ class RequestExecutedList
     {
         foreach (var req in requestExecuted)
         {
-            if (req.GetId() == id)  
+            if (req.GetId() == id)
                 return req;
         }
         return null;

@@ -1,10 +1,12 @@
 ﻿using System;
 using Task_worker_matching.Memory_Layer;
 
+namespace Task_worker_matching.Memory_Layer;
+
 public class RequestExecuted
 {
-    private Offer offer;
     private Request request;
+    private Worker worker;
     private DateTime actal_start_time;
     private DateTime actal_end_time;
     private RequestStatus status;
@@ -14,8 +16,8 @@ public class RequestExecuted
     private string worker_feedbaack;
 
     // Setters
-    public void SetOffer(Offer value) => offer = value;
     public void SetRequest(Request value) => request = value;
+    public void SetWroker(Worker value) => worker = value;
     public void SetActalStartTime(DateTime value) => actal_start_time = value;
     public void SetActalEndTime(DateTime value) => actal_end_time = value;
     public void SetStatus(RequestStatus value) => status = value;
@@ -25,8 +27,8 @@ public class RequestExecuted
     public void SetWorkerFeedback(string value) => worker_feedbaack = value;
 
     // Getters
-    public Offer GetOffer() => offer;
     public Request GetRequest() => request;
+    public Worker GetWorker() => worker;
     public DateTime GetActalStartTime() => actal_start_time;
     public DateTime GetActalEndTime() => actal_end_time;
     public RequestStatus GetStatus() => status;
