@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 class WorkerOfferService
 {
-    private Cache cache<Offer>;
+    private Cache<Offer> cache;
     
     public isValidItem(Offer item)
     {
