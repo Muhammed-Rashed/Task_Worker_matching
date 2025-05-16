@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Task_worker_matching.Memory_Layer;
+namespace MyAvaloniaApp.Memory_Layer;
 
 public class RequestList: IMemory<Request>
 {

@@ -131,7 +131,6 @@ namespace PersistenceLayer
             string createRequestExecutedTable = @"
             IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='RequestExecuted' AND xtype='U')
             CREATE TABLE RequestExecuted (
-                Offer_id INT FOREIGN KEY REFERENCES WorkerOffer(Id),
                 Request_id INT FOREIGN KEY REFERENCES Request(Id),
                 Assigned_worker_id INT FOREIGN KEY REFERENCES Worker(Id),
                 Actual_start_time DATETIME,
@@ -141,7 +140,7 @@ namespace PersistenceLayer
                 Worker_rate DECIMAL(2,1),
                 Client_feedback VARCHAR(500),
                 Worker_feedback VARCHAR(500),
-                PRIMARY KEY (Offer_id, Request_id, Assigned_worker_id)
+                PRIMARY KEY (Request_id, Assigned_worker_id)
             );";
 
             // Asker type is 0 for client and 1 for worker

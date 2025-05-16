@@ -1,4 +1,4 @@
-namespace Task_worker_matching.Memory_Layer;
+namespace MyAvaloniaApp.Memory_Layer;
 
 public class User
 {
@@ -8,16 +8,6 @@ public class User
     private string password;
     private string user_ID;
     private double overall_rating;
-
-    public User(string userID, string name, string email, string phone, string password)
-    {
-        this.user_ID = userID;
-        this.name = name;
-        this.email = email;
-        this.phone_number = phone;
-        this.password = password;
-        this.overall_rating = 0.0;
-    }
 
     public string get_name() => name;
     public string get_email() => email;

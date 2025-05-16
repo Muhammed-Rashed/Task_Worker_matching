@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using PersistenceLayer;
-using Task_worker_matching.Memory_Layer;
+using MyAvaloniaApp.Memory_Layer;
 
 
 public class RequestRepoStrategy : IRepositoryStrategy<Request>
@@ -14,7 +14,7 @@ public class RequestRepoStrategy : IRepositoryStrategy<Request>
         _db_connection = PersistenceManager.GetInstance();
     }
 
-    public bool add_item(int user_id, int new_item_id, Request request)
+    public bool add_item(Request request)
     {
         try
         {
@@ -131,7 +131,7 @@ public class RequestRepoStrategy : IRepositoryStrategy<Request>
         }
     }
 
-    public bool update_item(int user_id, int new_item_id, Request old_item)
+    public bool update_item(Request new_item, Request old_item)
     {
         try
         {
@@ -149,15 +149,15 @@ public class RequestRepoStrategy : IRepositoryStrategy<Request>
                     WHERE Id = @Id AND Client_id = @ClientId";
 
                 using var cmd = new SqlCommand(updateQuery, conn);
-                cmd.Parameters.AddWithValue("@TaskId", old_item.TaskId);
-                cmd.Parameters.AddWithValue("@Status", old_item.Status);
-                cmd.Parameters.AddWithValue("@PreferredDate", old_item.PreferredDate);
-                cmd.Parameters.AddWithValue("@Address", old_item.Address);
-                cmd.Parameters.AddWithValue("@Location", old_item.Location);
-                cmd.Parameters.AddWithValue("@IsPrivate", old_item.IsPrivate);
-                cmd.Parameters.AddWithValue("@Description", old_item.Description);
+                cmd.Parameters.AddWithValue("@TaskId", new_item.TaskId);
+                cmd.Parameters.AddWithValue("@Status", new_item.Status);
+                cmd.Parameters.AddWithValue("@PreferredDate", new_item.PreferredDate);
+                cmd.Parameters.AddWithValue("@Address", new_item.Address);
+                cmd.Parameters.AddWithValue("@Location", new_item.Location);
+                cmd.Parameters.AddWithValue("@IsPrivate", new_item.IsPrivate);
+                cmd.Parameters.AddWithValue("@Description", new_item.Description);
                 cmd.Parameters.AddWithValue("@Id", old_item.Id);
-                cmd.Parameters.AddWithValue("@ClientId", user_id);
+                cmd.Parameters.AddWithValue("@ClientId", old_item.ClientId);
 
                 int rowsAffected = cmd.ExecuteNonQuery();
                 return rowsAffected > 0;
@@ -170,7 +170,7 @@ public class RequestRepoStrategy : IRepositoryStrategy<Request>
         }
     }
 
-    public bool delete_item(int user_id, int item_id)
+    public bool delete_item(Request item)
     {
         try
         {
@@ -181,8 +181,8 @@ public class RequestRepoStrategy : IRepositoryStrategy<Request>
                     WHERE Id = @Id AND Client_id = @ClientId";
 
                 using var cmd = new SqlCommand(deleteQuery, conn);
-                cmd.Parameters.AddWithValue("@Id", item_id);
-                cmd.Parameters.AddWithValue("@ClientId", user_id);
+                cmd.Parameters.AddWithValue("@Id", item.Id);
+                cmd.Parameters.AddWithValue("@ClientId", item.ClientId);
 
                 int rowsAffected = cmd.ExecuteNonQuery();
                 return rowsAffected > 0;

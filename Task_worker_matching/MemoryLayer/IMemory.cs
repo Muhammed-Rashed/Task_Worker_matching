@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Task_worker_matching.Memory_Layer;
+namespace MyAvaloniaApp.Memory_Layer;
 
 public interface IMemory<T>
 {

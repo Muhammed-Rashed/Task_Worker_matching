@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Task_worker_matching.Memory_Layer;
+namespace MyAvaloniaApp.Memory_Layer;
 
 public class Request
 {

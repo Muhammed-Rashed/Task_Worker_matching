@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using PersistenceLayer;
-using Task_worker_matching.Memory_Layer;
+using MyAvaloniaApp.Memory_Layer;
 
 
 public class TaskRepoStrategy : IRepositoryStrategy<Task>
@@ -14,7 +14,7 @@ public class TaskRepoStrategy : IRepositoryStrategy<Task>
         _dbConnection = PersistenceManager.GetInstance();
     }
 
-    public bool add_item(int user_id, int new_item_id, Task task)
+    public bool add_item(Task task)
     {
         try
         {
@@ -113,7 +113,7 @@ public class TaskRepoStrategy : IRepositoryStrategy<Task>
         }
     }
 
-    public bool update_item(int user_id, int new_item_id, Task old_item)
+    public bool update_item(Task new_item_id, Task old_item)
     {
         try
         {
@@ -127,10 +127,10 @@ public class TaskRepoStrategy : IRepositoryStrategy<Task>
                     WHERE Id = @Id";
 
                 using var cmd = new SqlCommand(updateQuery, conn);
-                cmd.Parameters.AddWithValue("@Name", old_item.Name);
-                cmd.Parameters.AddWithValue("@Specialty", string.Join(",", old_item.Specialty));
-                cmd.Parameters.AddWithValue("@AvgTime", old_item.Avg_Time);
-                cmd.Parameters.AddWithValue("@AvgFee", old_item.AVG_Fee);
+                cmd.Parameters.AddWithValue("@Name", new_item.Name);
+                cmd.Parameters.AddWithValue("@Specialty", string.Join(",", new_item.Specialty));
+                cmd.Parameters.AddWithValue("@AvgTime", new_item.Avg_Time);
+                cmd.Parameters.AddWithValue("@AvgFee", new_item.AVG_Fee);
                 cmd.Parameters.AddWithValue("@Id", old_item.Id);
 
                 int rowsAffected = cmd.ExecuteNonQuery();
@@ -144,7 +144,7 @@ public class TaskRepoStrategy : IRepositoryStrategy<Task>
         }
     }
 
-    public bool delete_item(int user_id, int item_id)
+    public bool delete_item(Task item)
     {
         try
         {
@@ -155,7 +155,7 @@ public class TaskRepoStrategy : IRepositoryStrategy<Task>
                     WHERE Id = @Id";
 
                 using var cmd = new SqlCommand(deleteQuery, conn);
-                cmd.Parameters.AddWithValue("@Id", item_id);
+                cmd.Parameters.AddWithValue("@Id", item.Id);
 
                 int rowsAffected = cmd.ExecuteNonQuery();
                 return rowsAffected > 0;

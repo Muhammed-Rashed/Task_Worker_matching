@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using PersistenceLayer;
-using Task_worker_matching.Memory_Layer;
+using MyAvaloniaApp.Memory_Layer;
 
 public class WorkerOfferRepoStrategy : IRepositoryStrategy<Offer>
 {
@@ -13,7 +13,7 @@ public class WorkerOfferRepoStrategy : IRepositoryStrategy<Offer>
         _db_connection = PersistenceManager.GetInstance();
     }
 
-    public bool add_item(int user_id, int new_item_id, Offer offer)
+    public bool add_item(Offer item)
     {
         try
         {
@@ -25,15 +25,15 @@ public class WorkerOfferRepoStrategy : IRepositoryStrategy<Offer>
                     SELECT SCOPE_IDENTITY();";
 
                 using var cmd = new SqlCommand(insertQuery, conn);
-                cmd.Parameters.AddWithValue("@WorkerId", offer.GetWorker().GetId());
-                cmd.Parameters.AddWithValue("@RequestId", offer.GetRequest().Id);
-                cmd.Parameters.AddWithValue("@ExpirationTime", offer.GetExpirationTime());
-                cmd.Parameters.AddWithValue("@Time", offer.GetTime());
-                cmd.Parameters.AddWithValue("@Fee", offer.GetFee());
-                cmd.Parameters.AddWithValue("@Message", offer.GetMessage());
+                cmd.Parameters.AddWithValue("@WorkerId", item.GetWorker().GetId());
+                cmd.Parameters.AddWithValue("@RequestId", item.GetRequest().Id);
+                cmd.Parameters.AddWithValue("@ExpirationTime", item.GetExpirationTime());
+                cmd.Parameters.AddWithValue("@Time", item.GetTime());
+                cmd.Parameters.AddWithValue("@Fee", item.GetFee());
+                cmd.Parameters.AddWithValue("@Message", item.GetMessage());
 
                 int newId = Convert.ToInt32(cmd.ExecuteScalar());
-                offer.SetId(newId); // Set the generated ID
+                item.SetId(newId); // Set the generated ID
                 return true;
             }
         }
@@ -115,7 +115,7 @@ public class WorkerOfferRepoStrategy : IRepositoryStrategy<Offer>
                     worker.SetId(reader.GetInt32(1));
                     offer.SetWorker(worker);
 
-                    var request = new Request();
+                    Request request = new Request();
                     request.Id = reader.GetInt32(2);
                     offer.SetRequest(request);
 
@@ -136,7 +136,7 @@ public class WorkerOfferRepoStrategy : IRepositoryStrategy<Offer>
         }
     }
 
-    public bool update_item(int user_id, int new_item_id, Offer offer)
+    public bool update_item(Offer new_item, Offer old_item)
     {
         try
         {
@@ -151,12 +151,12 @@ public class WorkerOfferRepoStrategy : IRepositoryStrategy<Offer>
                     WHERE Id = @Id AND worker_id = @WorkerId";
 
                 using var cmd = new SqlCommand(updateQuery, conn);
-                cmd.Parameters.AddWithValue("@ExpirationTime", offer.GetExpirationTime());
-                cmd.Parameters.AddWithValue("@Time", offer.GetTime());
-                cmd.Parameters.AddWithValue("@Fee", offer.GetFee());
-                cmd.Parameters.AddWithValue("@Message", offer.GetMessage());
-                cmd.Parameters.AddWithValue("@Id", offer.GetId());
-                cmd.Parameters.AddWithValue("@WorkerId", user_id);
+                cmd.Parameters.AddWithValue("@ExpirationTime", new_item.GetExpirationTime());
+                cmd.Parameters.AddWithValue("@Time", new_item.GetTime());
+                cmd.Parameters.AddWithValue("@Fee", new_item.GetFee());
+                cmd.Parameters.AddWithValue("@Message", new_item.GetMessage());
+                cmd.Parameters.AddWithValue("@Id", old_item.GetId());
+                cmd.Parameters.AddWithValue("@WorkerId", old_item.GetWorker().GetId());
 
                 int rowsAffected = cmd.ExecuteNonQuery();
                 return rowsAffected > 0;
@@ -169,7 +169,7 @@ public class WorkerOfferRepoStrategy : IRepositoryStrategy<Offer>
         }
     }
 
-    public bool delete_item(int user_id, int item_id)
+    public bool delete_item(Offer item)
     {
         try
         {
@@ -180,8 +180,8 @@ public class WorkerOfferRepoStrategy : IRepositoryStrategy<Offer>
                     WHERE Id = @Id AND worker_id = @WorkerId";
 
                 using var cmd = new SqlCommand(deleteQuery, conn);
-                cmd.Parameters.AddWithValue("@Id", item_id);
-                cmd.Parameters.AddWithValue("@WorkerId", user_id);
+                cmd.Parameters.AddWithValue("@Id", item.GetId());
+                cmd.Parameters.AddWithValue("@WorkerId", item.GetWorker().GetId());
 
                 int rowsAffected = cmd.ExecuteNonQuery();
                 return rowsAffected > 0;
