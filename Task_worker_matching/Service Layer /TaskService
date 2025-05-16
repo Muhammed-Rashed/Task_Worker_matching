@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+
+class TaskService
+{
+    private cache<Task>;
+    
+    public isValidItem(Task item)
+    {
+        return (item.getAVGTime() != null && item.getAVGFee() != null && item.getSpeciality());
+    }
+    
+    public bool add(Task item)
+    {
+        if (isValidItem(item))
+        {
+            return cache.add(item);
+        }
+        return false;
+    }
+    
+    public bool update(Task new_item, Task old_item)
+    {
+        if(isValidItem(item))
+        {
+            return cache.update(item);
+        }
+        
+        return false;
+    }
+    
+    public bool delete(Task item)
+    {
+        if(isValidItem(item))
+        {
+            return cache.delete(item);
+        }
+        return false;
+    }
+    
+    public List<Task> get_data()
+    {
+        return cache.get_date();
+    }
+}
