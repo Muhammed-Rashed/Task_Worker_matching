@@ -1,0 +1,68 @@
+<!-- SignupChoiceWindow.xaml - Signup Options Page -->
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Task_worker_matching.SignupChoicePage"
+             Width="800" Height="500">
+    <Grid Background="#1E1E2F">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="20">
+            <TextBlock Text="Sign up as:"
+                       FontSize="20"
+                       Foreground="DodgerBlue"
+                       HorizontalAlignment="Center"/>
+            
+            <StackPanel Orientation="Horizontal" Spacing="40" HorizontalAlignment="Center">
+                <!-- Client Signup Box -->
+                <Border Width="240" Height="280" Background="#2A2A3B" CornerRadius="10" Padding="10">
+                    <StackPanel Spacing="10" VerticalAlignment="Center">
+                        <Image Source="avares://Task_worker_matching/Assets/client_icon.png"
+                               Width="64" Height="64" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Do you have tasks and want to find workers with certain skills to do them for you without having to waste time?"
+                                   Foreground="White"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"/>
+                        <Button x:Name="ClientButton"
+                                Content="Sign up as Client"
+                                Width="160"
+                                Background="Black"
+                                Foreground="White"
+                                HorizontalAlignment="Center"/>
+                        <TextBlock Text="📌 Find professionals for your tasks."
+                                   Foreground="Gray"
+                                   FontSize="12"
+                                   TextAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Worker Signup Box -->
+                <Border Width="240" Height="280" Background="#2A2A3B" CornerRadius="10" Padding="10">
+                    <StackPanel Spacing="10" VerticalAlignment="Center">
+                        <Image Source="avares://Task_worker_matching/Assets/worker_icon.png"
+                               Width="64" Height="64" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Do you have certain skills that you are looking to apply professionally and do certain tasks for clients and make some money?"
+                                   Foreground="White"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"/>
+                        <Button x:Name="WorkerButton"
+                                Content="Sign up as Worker"
+                                Width="160"
+                                Background="Black"
+                                Foreground="White"
+                                HorizontalAlignment="Center"/>
+                        <TextBlock Text="📌 Offer your professional services."
+                                   Foreground="Gray"
+                                   FontSize="12"
+                                   TextAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!-- Login Link -->
+            <TextBlock x:Name="LoginLink"
+                       Text="Already have an account? Login"
+                       Foreground="DodgerBlue"
+                       HorizontalAlignment="Center"
+                       Cursor="Hand"
+                       TextDecorations="Underline"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

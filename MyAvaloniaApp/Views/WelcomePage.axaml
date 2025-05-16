@@ -1,0 +1,15 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Task_worker_matching.WelcomePage"
+        Width="800" Height="450">
+    <Grid Background="#1E1E2F">
+        <Border Width="300" Height="250" Background="#2A2A3B" CornerRadius="10" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="15">
+                <TextBlock Text="welcome to" Foreground="DodgerBlue" FontSize="16" HorizontalAlignment="Center"/>
+                <TextBlock Text="Task worker machine" FontWeight="Bold" Foreground="White" FontSize="18" HorizontalAlignment="Center"/>
+                <Button Content="Login" Width="200" Background="DodgerBlue" Foreground="White" Click="Login_Click"/>
+                <Button Content="sign up" Width="200" Background="Black" Foreground="White" Click="Signup_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
