@@ -7,7 +7,7 @@ class TaskService
     
     public isValidItem(Task item)
     {
-        return (item.getAVGTime() != null && item.getAVGFee() != null && item.getSpeciality());
+        return (item.getAVGTime() != null && item.getAVGFee() != null && item.getSpeciality() != null);
     }
     
     public bool add(Task item)
