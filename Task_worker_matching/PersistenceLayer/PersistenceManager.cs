@@ -61,7 +61,9 @@ namespace PersistenceLayer
                 Email VARCHAR(100),
                 PhoneNum VARCHAR(15),
                 Available_locations VARCHAR(500),
-                Overall_rating DECIMAL(2,1)
+                Overall_rating DECIMAL(2,1),
+                Available_start_time TIME,
+                Available_end_time TIME
             );";
 
             // Because it's a multivalued attribute
@@ -133,6 +135,7 @@ namespace PersistenceLayer
             CREATE TABLE RequestExecuted (
                 Request_id INT FOREIGN KEY REFERENCES Request(Id),
                 Assigned_worker_id INT FOREIGN KEY REFERENCES Worker(Id),
+                Client_id INT FOREIGN KEY REFERENCES Client(Id),
                 Actual_start_time DATETIME,
                 Actual_end_time DATETIME,
                 Status VARCHAR(50),
@@ -140,7 +143,7 @@ namespace PersistenceLayer
                 Worker_rate DECIMAL(2,1),
                 Client_feedback VARCHAR(500),
                 Worker_feedback VARCHAR(500),
-                PRIMARY KEY (Request_id, Assigned_worker_id)
+                PRIMARY KEY (Request_id, Assigned_worker_id, Client_id)
             );";
 
             // Asker type is 0 for client and 1 for worker

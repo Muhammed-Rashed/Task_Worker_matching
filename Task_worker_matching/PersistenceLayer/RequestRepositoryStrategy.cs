@@ -22,6 +22,7 @@ public class RequestRepoStrategy : IRepositoryStrategy<Request>
             {
                 string insertQuery = @"
                     INSERT INTO Request (Client_id, Task_id, Status, preferred_date, Address, Location, Placement_time, IsPrivate, Description)
+                    OUTPUT INSERTED.Id
                     VALUES (@ClientId, @TaskId, @Status, @PreferredDate, @Address, @Location, @PlacementTime, @IsPrivate, @Description);
                     SELECT SCOPE_IDENTITY();";
 
@@ -35,6 +36,8 @@ public class RequestRepoStrategy : IRepositoryStrategy<Request>
                 cmd.Parameters.AddWithValue("@PlacementTime", request.PlacementTime);
                 cmd.Parameters.AddWithValue("@IsPrivate", request.IsPrivate);
                 cmd.Parameters.AddWithValue("@Description", request.Description);
+
+                request.Id = (int)cmd.ExecuteScalar();
 
                 int newId = Convert.ToInt32(cmd.ExecuteScalar());
                 request.Id = newId;
