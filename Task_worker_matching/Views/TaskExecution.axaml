@@ -1,0 +1,261 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="MyAvaloniaApp.Views.TaskExecution"
+        Width="900" Height="650"
+        Background="#111827"
+        Title="Task Execution"
+        WindowStartupLocation="CenterScreen">
+
+  <Grid>
+    <!-- 5% / 90% / 5% rows -->
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0.05*"/>
+      <RowDefinition Height="0.9*"/>
+      <RowDefinition Height="0.05*"/>
+    </Grid.RowDefinitions>
+    <!-- 5% / 90% / 5% columns -->
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="0.05*"/>
+      <ColumnDefinition Width="0.9*"/>
+      <ColumnDefinition Width="0.05*"/>
+    </Grid.ColumnDefinitions>
+
+    <!-- Navigation Bar -->
+    <StackPanel Grid.Row="0" Grid.Column="1"
+                Orientation="Horizontal"
+                Spacing="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+      <Button Content="Home"           Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="My Offers"      Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Open Requests"  Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Task Execution" Background="#2563eb" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Question"       Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Profile"        Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Log Out"        Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+    </StackPanel>
+
+    <!-- Backdrop Panel -->
+    <Border Grid.Row="1" Grid.Column="1"
+            Background="#1f2937"
+            CornerRadius="20"
+            Padding="20">
+      <StackPanel Spacing="16">
+
+        <!-- Heading -->
+        <TextBlock Text="Task handling"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Foreground="White" />
+
+        <!-- Four Columns -->
+        <StackPanel Orientation="Horizontal" Spacing="14" HorizontalAlignment = "Center">
+
+          <!-- Scheduled Column -->
+          <StackPanel Width="300">
+            <TextBlock Text="Scheduled"
+                       FontSize="14"
+                       FontWeight="SemiBold"
+                       Foreground="White"
+                       Margin="0,0,0,8"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="600">
+              <StackPanel Spacing="12">
+
+                <!-- Card 1 -->
+                <Border Background="#111827" CornerRadius="6" Padding="12" BorderBrush="#425f9e" BorderThickness="1">
+                <StackPanel Spacing="6">
+                  <TextBlock Text="General Request"
+                             FontSize="10"
+                             Foreground="#60a5fa"
+                             Background="#1e293b"
+                             Padding="2,1"
+                             HorizontalAlignment="Left"/>
+                  <TextBlock Text="House Cleaning"
+                             FontSize="14"
+                             FontWeight="Bold"
+                             Foreground="White"/>
+                  <TextBlock Text="Client: Sarah Johnson"
+                             FontSize="11"
+                             Foreground="LightGray"/>
+                  <TextBlock Text="📅 Tomorrow, 10:00 AM"
+                             FontSize="11"
+                             Foreground="LightGray"/>
+                  <TextBlock Text="📍 123 Main St, Seattle"
+                             FontSize="11"
+                             Foreground="LightGray"/>
+                  <TextBlock Text="💲 $120"
+                             FontSize="11"
+                             Foreground="LightGray"/>
+                  <Button Content="Start Task"
+                          Background="#2563eb"
+                          Foreground="White"
+                          Padding="6,2"
+                          BorderBrush="Transparent"
+                          Margin="0,8,0,0"/>
+                </StackPanel>
+              </Border>
+                <!-- ← Add more Scheduled cards here -->
+
+              </StackPanel>
+            </ScrollViewer>
+          </StackPanel>
+
+          <!-- In Progress Column -->
+          <StackPanel Width="300">
+            <TextBlock Text="In Progress"
+                       FontSize="14"
+                       FontWeight="SemiBold"
+                       Foreground="White"
+                       Margin="0,0,0,8"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="600">
+              <StackPanel Spacing="12">
+
+                <!-- Card 1 -->
+               <Border Background="#111827" CornerRadius="6" Padding="12" BorderBrush="#425f9e" BorderThickness="1">
+                <StackPanel Spacing="6">
+                  <TextBlock Text="Private Request"
+                             FontSize="10"
+                             Foreground="#22c55e"
+                             Background="#1e292b"
+                             Padding="2,1"
+                             HorizontalAlignment="Left"/>
+                  <TextBlock Text="Garden Maintenance"
+                             FontSize="14"
+                             FontWeight="Bold"
+                             Foreground="White"/>
+                  <TextBlock Text="Client: Mike Peters"
+                             FontSize="11"
+                             Foreground="LightGray"/>
+                  <TextBlock Text="📅 Today, 2:00 PM"
+                             FontSize="11"
+                             Foreground="LightGray"/>
+                  <TextBlock Text="📍 456 Park Ave, Seattle"
+                             FontSize="11"
+                             Foreground="LightGray"/>
+                  <TextBlock Text="💲 $85"
+                             FontSize="11"
+                             Foreground="LightGray"/>
+                  <Button Content="Mark Complete"
+                          Background="#2563eb"
+                          Foreground="White"
+                          Padding="6,2"
+                          BorderBrush="Transparent"
+                          Margin="0,8,0,0"/>
+                </StackPanel>
+              </Border>
+                <!-- ← Add more In Progress cards here -->
+
+              </StackPanel>
+            </ScrollViewer>
+          </StackPanel>
+
+          <!-- Pending Confirmation Column -->
+          <StackPanel Width="300">
+            <TextBlock Text="Pending Confirmation"
+                       FontSize="14"
+                       FontWeight="SemiBold"
+                       Foreground="White"
+                       Margin="0,0,0,8"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="600">
+              <StackPanel Spacing="12">
+
+                <!-- Card 1 -->
+                <Border Background="#111827" CornerRadius="6" Padding="12" BorderBrush="#425f9e" BorderThickness="1">
+                <StackPanel Spacing="6">
+                  <TextBlock Text="General Request"
+                             FontSize="10"
+                             Foreground="#60a5fa"
+                             Background="#1e293b"
+                             Padding="2,1"
+                             HorizontalAlignment="Left"/>
+                  <TextBlock Text="Window Cleaning"
+                             FontSize="14"
+                             FontWeight="Bold"
+                             Foreground="White"/>
+                  <TextBlock Text="Client: Emma Wilson"
+                             FontSize="11"
+                             Foreground="LightGray"/>
+                  <TextBlock Text="📅 Yesterday, 11:00 AM"
+                             FontSize="11"
+                             Foreground="LightGray"/>
+                  <TextBlock Text="📍 789 Oak Rd, Seattle"
+                             FontSize="11"
+                             Foreground="LightGray"/>
+                  <TextBlock Text="💲 $95"
+                             FontSize="11"
+                             Foreground="LightGray"/>
+                  <Button Content="Awaiting Client Review"
+                          Background="#374151"
+                          Foreground="Gray"
+                          Padding="6,2"
+                          BorderBrush="Transparent"
+                          Margin="0,8,0,0"
+                          IsEnabled="False"/>
+                </StackPanel>
+              </Border>
+
+                <!-- ← Add more Pending Confirmation cards here -->
+              </StackPanel>
+            </ScrollViewer>
+          </StackPanel>
+
+          <!-- Completed Column -->
+          <StackPanel Width="300">
+            <TextBlock Text="Completed"
+                       FontSize="14"
+                       FontWeight="SemiBold"
+                       Foreground="White"
+                       Margin="0,0,0,8"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="600">
+              <StackPanel Spacing="12">
+
+                <!-- Card 1 -->
+                <Border Background="#111827" CornerRadius="6" Padding="12" BorderBrush="#425f9e" BorderThickness="1">
+                <StackPanel Spacing="6">
+                  <TextBlock Text="Private Request"
+                             FontSize="10"
+                             Foreground="#22c55e"
+                             Background="#1e292b"
+                             Padding="2,1"
+                             HorizontalAlignment="Left"/>
+                  <TextBlock Text="Furniture Assembly"
+                             FontSize="14"
+                             FontWeight="Bold"
+                             Foreground="White"/>
+                  <TextBlock Text="Client: Tom Brown"
+                             FontSize="11"
+                             Foreground="LightGray"/>
+                  <TextBlock Text="📅 Mon, 9:00 AM"
+                             FontSize="11"
+                             Foreground="LightGray"/>
+                  <TextBlock Text="📍 321 Pine St, Seattle"
+                             FontSize="11"
+                             Foreground="LightGray"/>
+                  <TextBlock Text="💲 $150"
+                             FontSize="11"
+                             Foreground="LightGray"/>
+                  <StackPanel Orientation="Horizontal" Spacing="4">
+                    <TextBlock Text="4.3" Foreground="White" FontSize="12" FontWeight="Bold"/>
+                    <TextBlock Text="★" Foreground="#facc15" FontSize="14"/>
+                  </StackPanel>
+                  <Button Content="✓ Completed"
+                          Background="#22c55e"
+                          Foreground="White"
+                          Padding="6,2"
+                          BorderBrush="Transparent"
+                          Margin="0,8,0,0"
+                          IsEnabled="False"/>
+                </StackPanel>
+              </Border>
+
+                <!-- ← Add more Completed cards here -->
+
+              </StackPanel>
+            </ScrollViewer>
+          </StackPanel>
+
+        </StackPanel>
+      </StackPanel>
+    </Border>
+  </Grid>
+</Window>
