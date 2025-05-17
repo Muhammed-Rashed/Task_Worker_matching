@@ -14,7 +14,7 @@
         <DockPanel LastChildFill="True">
 
             <!-- Top Navigation -->
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Spacing="10">
+            <StackPanel x:Name="NavPanel" Orientation="Horizontal" DockPanel.Dock="Top" Spacing="10">
                 <Button Content="Home"/>
                 <Button Content="My Requests"/>
                 <Button Content="Questions" Background="#2563eb" Foreground="White"/>

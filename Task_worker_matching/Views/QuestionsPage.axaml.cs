@@ -1,18 +1,15 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+﻿using Avalonia.Controls;
+using MyAvaloniaApp.Controllers;
 
-namespace Task_worker_matching.Views;
-
-public partial class QuestionsListPage : UserControl
+namespace MyAvaloniaApp.Views
 {
-    public QuestionsListPage()
+    public partial class QuestionsPage : UserControl
     {
-        InitializeComponent();
-    }
-
-    private void InitializeComponent()
-    {
-        throw new System.NotImplementedException();
+        private readonly NavbarController _navbarController = new();
+        public QuestionsPage()
+        {
+            InitializeComponent();
+            _navbarController.Init(this.FindControl<StackPanel>("NavPanel"));
+        }
     }
 }
