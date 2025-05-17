@@ -1,0 +1,74 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MyAvaloniaApp.Views.ClientTaskExecutionPage">
+   <Grid Background="#111827" Margin="20">
+        <DockPanel LastChildFill="True">
+            <!-- Navigation Bar -->
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Spacing="10">
+                <Button Content="Home" Background="#1f2937" Foreground="White"/>
+                <Button Content="My Requests" Background="#1f2937" Foreground="White"/>
+                <Button Content="Task Execution" Background="#2563eb" Foreground="White"/>
+                <Button Content="Question" Background="#1f2937" Foreground="White"/>
+                <Button Content="Profile" Background="#1f2937" Foreground="White"/>
+                <Button Content="Log Out" Background="#1f2937" Foreground="White"/>
+            </StackPanel>
+
+            <!-- Section Title -->
+            <TextBlock Text="Client Request Execution" FontSize="20" FontWeight="Bold"
+                       Foreground="White" Margin="0,20,0,10"/>
+
+            <!-- Scrollable Task List -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl Items="{Binding Tasks}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#1f2937"
+                                    BorderBrush="#425f9e"
+                                    BorderThickness="1"
+                                    CornerRadius="10"
+                                    Padding="15"
+                                    Margin="0,0,0,20">
+                                <StackPanel Spacing="10">
+                                    <!-- Title -->
+                                    <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="Bold" Foreground="White"/>
+
+                                    <!-- Profile Row -->
+                                    <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                        <Image Source="{Binding ImagePath}" Width="40" Height="40" ClipToBounds="True"/>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding UserName}" Foreground="White" FontWeight="Bold"/>
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <TextBlock Text="{Binding UserRole}" Foreground="#93c5fd"/>
+                                                <Border Background="#fde68a" CornerRadius="4" Padding="2,0" Margin="5,0">
+                                                    <TextBlock Text="{Binding Status}" FontSize="12"/>
+                                                </Border>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <!-- Task Info -->
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Date}" Foreground="White"/>
+                                        <TextBlock Text="{Binding Address}" Foreground="White"/>
+                                        <TextBlock Text="Task Description" FontWeight="Bold" Foreground="White" Margin="0,10,0,2"/>
+                                        <TextBlock Text="{Binding Description}" Foreground="#cbd5e1"/>
+                                    </StackPanel>
+
+                                    <!-- Rating & Button -->
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                                        <TextBlock Text="Rating:" Foreground="White" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Rating}" Foreground="Gold" VerticalAlignment="Center"/>
+                                        <Button Content="Mark as complete" Background="#2563eb" Foreground="White"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </DockPanel>
+    </Grid>
+</UserControl>
