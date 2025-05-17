@@ -1,7 +1,7 @@
 ﻿using Avalonia.Controls;
-using MyAvaloniaApp.Controllers;
+using Task_worker_matching.Controllers;
 
-namespace MyAvaloniaApp.Views
+namespace Task_worker_matching.Views
 {
     public partial class QuestionsPage : UserControl
     {

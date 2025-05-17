@@ -3,7 +3,7 @@ using Avalonia.Media;
 using System.Collections.Generic;
 using Avalonia;
 
-namespace MyAvaloniaApp.Controllers
+namespace Task_worker_matching.Controllers
 {
     public class NavbarController
     {

@@ -1,6 +1,6 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Class="MyAvaloniaApp.Views.MyRequests"
+        x:Class="Task_worker_matching.Views.MyRequests"
         Width="1024" Height="700"
         Background="#111827"
         Title="My Requests"

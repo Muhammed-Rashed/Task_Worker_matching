@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace MyAvaloniaApp.Views
+namespace Task_worker_matching.Views
 {
     public partial class MyOffers : Window
     {

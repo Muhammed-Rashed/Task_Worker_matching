@@ -1,10 +1,8 @@
-<Window xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Class="MyAvaloniaApp.Views.WorkerHome"
+        x:Class="Task_worker_matching.Views.WorkerHome"
         Width="800" Height="600"
-        Background="#111827"
-        Title="Worker Dashboard"
-        WindowStartupLocation="CenterScreen">
+        Background="#111827">
 
   <Grid>
     <!-- 5% / 90% / 5% rows -->
@@ -242,4 +240,4 @@
     </Border>
 
   </Grid>
-</Window>
+</UserControl>

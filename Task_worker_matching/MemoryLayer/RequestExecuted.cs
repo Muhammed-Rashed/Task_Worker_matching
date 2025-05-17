@@ -1,7 +1,7 @@
 ﻿using System;
-using MyAvaloniaApp.Memory_Layer;
+using Task_worker_matching.Memory_Layer;
 
-namespace MyAvaloniaApp.Memory_Layer;
+namespace Task_worker_matching.Memory_Layer;
 
 public class RequestExecuted
 {

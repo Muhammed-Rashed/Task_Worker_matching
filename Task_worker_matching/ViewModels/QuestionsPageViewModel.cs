@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace MyAvaloniaApp.ViewModels;
+namespace Task_worker_matching.ViewModels;
 
 public class QuestionsPageViewModel
 {

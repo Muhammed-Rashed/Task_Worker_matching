@@ -2,8 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="https://github.com/avaloniaui"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:MyAvaloniaApp.ViewModels"
-             x:Class="MyAvaloniaApp.Views.QuestionsPage"
+             xmlns:vm="clr-namespace:Task_worker_matching.ViewModels"
+             x:Class="Task_worker_matching.Views.QuestionsPage"
              mc:Ignorable="d"
              x:DataType="vm:QuestionsPageViewModel">
     <UserControl.DataContext>

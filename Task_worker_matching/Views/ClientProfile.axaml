@@ -1,6 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Class="MyAvaloniaApp.Views.ClientProfile"
+        x:Class="Task_worker_matching.Views.ClientProfile"
         Width="1024" Height="700"
         Background="#111827">
 

@@ -1,4 +1,4 @@
-﻿namespace MyAvaloniaApp.ViewModels;
+﻿namespace Task_worker_matching.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {

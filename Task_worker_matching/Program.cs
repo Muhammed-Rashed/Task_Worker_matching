@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using System;
 
-namespace MyAvaloniaApp;
+namespace Task_worker_matching;
 
 sealed class Program
 {

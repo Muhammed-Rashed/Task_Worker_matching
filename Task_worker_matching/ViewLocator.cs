@@ -1,9 +1,9 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using MyAvaloniaApp.ViewModels;
+using Task_worker_matching.ViewModels;
 
-namespace MyAvaloniaApp;
+namespace Task_worker_matching;
 
 public class ViewLocator : IDataTemplate
 {

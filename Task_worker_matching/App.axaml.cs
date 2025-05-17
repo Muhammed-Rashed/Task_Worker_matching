@@ -4,10 +4,10 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
-using MyAvaloniaApp.ViewModels;
-using MyAvaloniaApp.Views;
+using Task_worker_matching.ViewModels;
+using Task_worker_matching.Views;
 
-namespace MyAvaloniaApp;
+namespace Task_worker_matching;
 
 public partial class App : Application
 {
