@@ -1,8 +1,8 @@
 using Avalonia.Controls;
 
-namespace MyAvaloniaApp.Views
+namespace Task_worker_matching.Views
 {
-    public partial class ReceivedOffers : Window
+    public partial class ReceivedOffers : UserControl
     {
         public ReceivedOffers()
         {

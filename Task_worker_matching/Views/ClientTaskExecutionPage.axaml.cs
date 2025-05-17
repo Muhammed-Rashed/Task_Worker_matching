@@ -1,13 +1,14 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+﻿using Avalonia.Controls;
+using Task_worker_matching.ViewModels;
 
-namespace MyAvaloniaApp.Views;
-
-public partial class ClientTaskExecutionPage : UserControl
+namespace Task_worker_matching.Views
 {
-    public ClientTaskExecutionPage()
+    public partial class ClientTaskExecutionPage : UserControl
     {
-        InitializeComponent();
+        public ClientTaskExecutionPage()
+        {
+            InitializeComponent();
+            DataContext = new ClientTaskExecutionPageViewModel(); // Set the ViewModel
+        }
     }
 }

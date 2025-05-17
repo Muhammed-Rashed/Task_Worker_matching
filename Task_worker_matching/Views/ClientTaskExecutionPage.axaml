@@ -2,9 +2,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Task_worker_matching.Views.ClientTaskExecutionPage">
-   <Grid Background="#111827" Margin="20">
+             xmlns:vm="clr-namespace:Task_worker_matching.ViewModels"
+             mc:Ignorable="d"
+             d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Task_worker_matching.Views.ClientTaskExecutionPage"
+             x:DataType="vm:ClientTaskExecutionPageViewModel">
+
+    <Grid Background="#111827" Margin="20">
         <DockPanel LastChildFill="True">
             <!-- Navigation Bar -->
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Spacing="10">
@@ -22,7 +26,7 @@
 
             <!-- Scrollable Task List -->
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <ItemsControl Items="{Binding Tasks}">
+                <ItemsControl ItemsSource="{Binding Tasks}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border Background="#1f2937"
@@ -32,10 +36,7 @@
                                     Padding="15"
                                     Margin="0,0,0,20">
                                 <StackPanel Spacing="10">
-                                    <!-- Title -->
                                     <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="Bold" Foreground="White"/>
-
-                                    <!-- Profile Row -->
                                     <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
                                         <Image Source="{Binding ImagePath}" Width="40" Height="40" ClipToBounds="True"/>
                                         <StackPanel>
@@ -49,7 +50,6 @@
                                         </StackPanel>
                                     </StackPanel>
 
-                                    <!-- Task Info -->
                                     <StackPanel>
                                         <TextBlock Text="{Binding Date}" Foreground="White"/>
                                         <TextBlock Text="{Binding Address}" Foreground="White"/>
@@ -57,7 +57,6 @@
                                         <TextBlock Text="{Binding Description}" Foreground="#cbd5e1"/>
                                     </StackPanel>
 
-                                    <!-- Rating & Button -->
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
                                         <TextBlock Text="Rating:" Foreground="White" VerticalAlignment="Center"/>
                                         <TextBlock Text="{Binding Rating}" Foreground="Gold" VerticalAlignment="Center"/>

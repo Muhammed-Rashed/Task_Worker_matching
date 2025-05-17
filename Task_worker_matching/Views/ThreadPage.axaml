@@ -3,18 +3,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Task_worker_matching.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d"
+             d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Task_worker_matching.Views.ThreadPage"
              x:DataType="vm:ThreadPageViewModel">
-  
-    <UserControl.DataContext>
-        <vm:ThreadPageViewModel/>
-    </UserControl.DataContext>
 
     <Grid Background="#0f172a" Margin="20">
         <DockPanel LastChildFill="True">
 
-            <!-- Top Navigation -->
+            <!-- Navigation -->
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Spacing="10">
                 <Button Content="Home"/>
                 <Button Content="My Requests"/>
@@ -23,7 +20,7 @@
                 <Button Content="Log out"/>
             </StackPanel>
 
-            <!-- Back Arrow -->
+            <!-- Back Button -->
             <Button Content="← Back" HorizontalAlignment="Left" Margin="0,20,0,0" Click="BackButton_Click"/>
 
             <!-- Thread Content -->
@@ -39,7 +36,7 @@
                     </Border>
 
                     <!-- Answers -->
-                    <ItemsControl Items="{Binding Answers}">
+                    <ItemsControl ItemsSource="{Binding Answers}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border Background="#1e293b" CornerRadius="10" Padding="15" Margin="0,0,0,10">
