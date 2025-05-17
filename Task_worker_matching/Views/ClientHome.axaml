@@ -1,10 +1,8 @@
-<Window xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="Task_worker_matching.Views.ClientHome"
         Width="1024" Height="700"
-        Background="#111827"
-        Title="Client Dashboard"
-        WindowStartupLocation="CenterScreen">
+        Background="#111827">
 
   <Grid>
     <!-- 5% / 90% / 5% rows -->
@@ -269,4 +267,4 @@
     </Border>
 
   </Grid>
-</Window>
+</UserControl>

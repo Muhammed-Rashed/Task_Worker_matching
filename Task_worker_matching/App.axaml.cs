@@ -23,10 +23,10 @@ public partial class App : Application
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
             DisableAvaloniaDataAnnotationValidation();
-            desktop.MainWindow = new ClientProfile();
-            {
-                DataContext = new ClientProfile();
-            };
+            
+            // Using ClientProfileWindow as main window if it inherits from Window
+            desktop.MainWindow = new MainWindow();
+
         }
 
         base.OnFrameworkInitializationCompleted();

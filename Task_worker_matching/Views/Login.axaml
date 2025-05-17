@@ -1,10 +1,8 @@
-<Window xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="Task_worker_matching.Views.Login"
         Width="800" Height="600"
-        Background="#111827"
-        Title="Sign in"
-        WindowStartupLocation="CenterScreen">
+        Background="#111827">
 
   <Grid>
     <!-- 10% / 80% / 10% rows -->
@@ -95,4 +93,4 @@
       </StackPanel>
     </Border>
   </Grid>
-</Window>
+</UserControl>
