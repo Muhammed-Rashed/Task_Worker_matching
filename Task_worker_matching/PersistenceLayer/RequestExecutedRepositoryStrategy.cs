@@ -67,8 +67,8 @@ namespace PersistenceLayer
                         RequestExecuted RE = new RequestExecuted();
                         Request r = requestRepo.get_item(user_id, reader.GetInt32(0));
                         RE.SetRequest(r);
-                        RE.SetActalStartTime(reader.GetDateTime(2));
-                        RE.SetActalEndTime(reader.GetDateTime(3));
+                        RE.SetActualStartTime(reader.GetDateTime(2));
+                        RE.SetActualEndTime(reader.GetDateTime(3));
                         if (Enum.TryParse(reader.GetString(4), out RequestStatus status))
                         {
                             RE.SetStatus(status);
@@ -140,8 +140,8 @@ namespace PersistenceLayer
                         WHERE Request_id = @Request_id AND Assigned_worker_id = @Assigned_worker_id";
 
                     using var cmd = new SqlCommand(deleteQuery, conn);
-                    cmd.Parameters.AddWithValue("@Request_id", item.GetRequest().GetId);
-                    cmd.Parameters.AddWithValue("@Assigned_worker_id", item.GetWorker().GetId);
+                    cmd.Parameters.AddWithValue("@Request_id", item_id.GetRequest().Id);
+                    cmd.Parameters.AddWithValue("@Assigned_worker_id", item_id.GetWorker().GetId());
 
                     int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0;

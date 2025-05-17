@@ -113,7 +113,7 @@ public class TaskRepoStrategy : IRepositoryStrategy<Task>
         }
     }
 
-    public bool update_item(Task new_item_id, Task old_item)
+    public bool update_item(Task new_item, Task old_item)
     {
         try
         {
