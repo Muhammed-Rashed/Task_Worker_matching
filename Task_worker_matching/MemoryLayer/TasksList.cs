@@ -4,18 +4,18 @@ namespace Task_worker_matching.Memory_Layer;
 
 public class TasksList : IMemory<Task>
 {
-    private LinkedList<Task> _tasks;
+    private List<Task> _tasks;
 
     public TasksList()
     {
-        _tasks = new LinkedList<Task>();
+        _tasks = new List<Task>();
     }
 
     public bool AddItem(Task item)
     {
         try
         {
-            _tasks.AddLast(item);
+            _tasks.Add(item);
             return true;
         }
         catch
@@ -28,11 +28,11 @@ public class TasksList : IMemory<Task>
     {
         try
         {
-            var node = _tasks.Find(old_item);
+            var node = _tasks.Find(t => t.Id == old_item.Id);
             if (node != null)
             {
                 _tasks.Remove(node);
-                _tasks.AddLast(new_item);
+                _tasks.Add(new_item);
                 return true;
             }
             return false;
@@ -60,7 +60,7 @@ public class TasksList : IMemory<Task>
 
     public List<Task> Set_Data(List<Task> data)
     {
-        _tasks = new LinkedList<Task>(data);
+        _tasks = new List<Task>(data);
         return Get_Data();
     }
 
@@ -69,5 +69,10 @@ public class TasksList : IMemory<Task>
         // Assuming Task has an Id property (though not shown in the diagram)
         // This is an extension to make it work similar to other components
         return _tasks.FirstOrDefault(t => t.GetHashCode() == id);
+    }
+
+    void IMemory<Task>.Set_Data(List<Task> data)
+    {
+        _tasks = data;
     }
 }
