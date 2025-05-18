@@ -2,7 +2,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="Task_worker_matching.Views.SignupChoicePage"
-             Width="800" Height="500">
+             Width="1600" Height="820">
     <Grid Background="#1E1E2F">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="20">
             <TextBlock Text="Sign up as:"

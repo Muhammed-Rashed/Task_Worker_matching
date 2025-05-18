@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Task_worker_matching.ViewModels"
              mc:Ignorable="d"
-             d:DesignWidth="800" d:DesignHeight="450"
+             Width="1600" Height="820"
              x:Class="Task_worker_matching.Views.ClientTaskExecutionPage"
              x:DataType="vm:ClientTaskExecutionPageViewModel">
 

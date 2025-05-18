@@ -5,6 +5,7 @@
              xmlns:vm="clr-namespace:Task_worker_matching.ViewModels"
              x:Class="Task_worker_matching.Views.QuestionsPage"
              mc:Ignorable="d"
+             Width="1600" Height="820"
              x:DataType="vm:QuestionsPageViewModel">
     <UserControl.DataContext>
         <vm:QuestionsPageViewModel/>

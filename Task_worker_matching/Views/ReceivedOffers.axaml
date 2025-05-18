@@ -1,7 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="Task_worker_matching.Views.ReceivedOffers"
-        Width="800" Height="600"
+        Width="1600" Height="820"
         Background="#111827">
 
   <Grid>

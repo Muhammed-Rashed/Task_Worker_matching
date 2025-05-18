@@ -1,7 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="Task_worker_matching.Views.ClientSignUp"
-             Width="1200" Height="800"
+             Width="1600" Height="820"
              Background="#111827">
   <Grid>
     <Grid.RowDefinitions>
@@ -23,7 +23,7 @@
 
     <Border Grid.Row="1" Grid.Column="1"
             Width="400"
-            Height="650"
+            Height="680"
             Padding="20"
             Background="#111827"
             BorderBrush="#425f9e"
@@ -53,22 +53,22 @@
                    Margin="0,8,0,4"/>
         <TextBlock Text="Full Name" Foreground="White" FontSize="12"/>
         <TextBox Background="#374151"
-                 Foreground="White"
+                 Foreground="black"
                  BorderThickness="0"
                  Height="30"/>
         <TextBlock Text="Phone Number" Foreground="White" FontSize="12"/>
         <TextBox Background="#374151"
-                 Foreground="White"
+                 Foreground="black"
                  BorderThickness="0"
                  Height="30"/>
         <TextBlock Text="Email Address" Foreground="White" FontSize="12"/>
         <TextBox Background="#374151"
-                 Foreground="White"
+                 Foreground="black"
                  BorderThickness="0"
                  Height="30"/>
         <TextBlock Text="Password" Foreground="White" FontSize="12"/>
         <TextBox Background="#374151"
-                 Foreground="White"
+                 Foreground="black"
                  BorderThickness="0"
                  Height="30"
                  PasswordChar="●"/>
@@ -77,17 +77,17 @@
         <TextBlock Text="Additional Details"
                    FontSize="14"
                    FontWeight="Bold"
-                   Foreground="White"
+                   Foreground="black"
                    Margin="0,12,0,4"/>
         <TextBlock Text="Address" Foreground="White" FontSize="12"/>
         <TextBox Background="#374151"
-                 Foreground="White"
+                 Foreground="black"
                  BorderThickness="0"
                  Height="30"/>
         <TextBlock Text="Payment Information" Foreground="White" FontSize="12"/>
         <TextBox Watermark="Card number or PayPal ID"
                  Background="#374151"
-                 Foreground="White"
+                 Foreground="black"
                  BorderThickness="0"
                  Height="30"/>
 
