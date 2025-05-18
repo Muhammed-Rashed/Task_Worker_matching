@@ -1,43 +1,44 @@
 using System;
 using System.Collections.Generic;
 using Task_worker_matching.Memory_Layer;
-namespace ServiceLayer;
-
-class WorkerOfferService : IDataService<Offer>
+namespace Task_worker_matching.ServiceLayer
 {
-    private Cache<Offer> cache;
-    
-    public bool isValidItem(Offer item)
+    class WorkerOfferService : IDataService<Offer>
     {
-        return item.GetMessage() != "" && item.GetFee() > 0;
-    }
+        private Cache<Offer> cache;
     
-    public bool add(Offer item)
-    {
-        if (isValidItem(item))
-            return cache.add(item);
+        public bool isValidItem(Offer item)
+        {
+            return item.GetMessage() != "" && item.GetFee() > 0;
+        }
+    
+        public bool add(Offer item)
+        {
+            if (isValidItem(item))
+                return cache.add(item);
         
-        return false;
-    }
+            return false;
+        }
     
-    public bool update(Offer new_item, Offer old_item)
-    {
-        if(isValidItem(new_item))
-            return cache.update(new_item, old_item);
+        public bool update(Offer new_item, Offer old_item)
+        {
+            if(isValidItem(new_item))
+                return cache.update(new_item, old_item);
         
-        return false;
-    }
+            return false;
+        }
     
-    public bool delete(Offer item)
-    {
-        if(isValidItem(item))
-            return cache.delete(item);
+        public bool delete(Offer item)
+        {
+            if(isValidItem(item))
+                return cache.delete(item);
         
-        return false;
-    }
+            return false;
+        }
     
-    public List<Offer> get_data()
-    {
-        return cache.get_data();
+        public List<Offer> get_data()
+        {
+            return cache.get_data();
+        }
     }
 }

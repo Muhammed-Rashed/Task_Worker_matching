@@ -1,34 +1,34 @@
 <UserControl xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Class="Task_worker_matching.Views.WorkerSignUp"
-        Width="800" Height="600"
-        Background="#111827">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="https://github.com/avaloniaui"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Task_worker_matching.ViewModels"
+             x:Class="Task_worker_matching.Views.WorkerSignUp"
+             mc:Ignorable="d"
+             d:DesignWidth="800" d:DesignHeight="600"
+             x:DataType="vm:WorkerProfileViewModel">
 
-  <Grid>
-    <!-- 5% / 90% / 5% rows -->
+  <Grid Background="#111827">
     <Grid.RowDefinitions>
       <RowDefinition Height="0.05*" />
       <RowDefinition Height="0.9*" />
       <RowDefinition Height="0.05*" />
     </Grid.RowDefinitions>
-    <!-- 5% / 90% / 5% columns -->
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="0.05*" />
       <ColumnDefinition Width="0.9*" />
       <ColumnDefinition Width="0.05*" />
     </Grid.ColumnDefinitions>
 
-    <!-- 80%×80% backdrop -->
     <Border Grid.Row="1" Grid.Column="1"
             Background="#1f2937"
             CornerRadius="25"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch" />
 
-    <!-- Worker Registration form panel -->
     <Border Grid.Row="1" Grid.Column="1"
             Width="400"
-            Height = "650"
+            Height="650"
             Padding="20"
             Background="#111827"
             BorderBrush="#425f9e"
@@ -38,64 +38,64 @@
             VerticalAlignment="Center">
 
       <StackPanel Spacing="10">
-        <!-- Header -->
         <TextBlock Text="Worker Registration"
                    FontSize="20"
                    FontWeight="Bold"
                    Foreground="#2563eb"
                    HorizontalAlignment="Center"/>
 
-        <!-- Personal Information -->
         <TextBlock Text="Personal Information"
                    FontSize="14"
                    FontWeight="Bold"
                    Foreground="White"
                    Margin="0,8,0,4"/>
         <TextBlock Text="Full Name" Foreground="White" FontSize="12"/>
-        <TextBox Background="#374151"
+        <TextBox Text="{Binding FullName, Mode=TwoWay}"
+                 Background="#374151"
                  Foreground="White"
                  BorderBrush="Transparent"
                  Height="30"/>
         <TextBlock Text="Phone Number" Foreground="White" FontSize="12"/>
-        <TextBox Background="#374151"
+        <TextBox Text="{Binding PhoneNumber, Mode=TwoWay}"
+                 Background="#374151"
                  Foreground="White"
                  BorderBrush="Transparent"
                  Height="30"/>
         <TextBlock Text="Email Address" Foreground="White" FontSize="12"/>
-        <TextBox Background="#374151"
+        <TextBox Text="{Binding Email, Mode=TwoWay}"
+                 Background="#374151"
                  Foreground="White"
                  BorderBrush="Transparent"
                  Height="30"/>
         <TextBlock Text="Password" Foreground="White" FontSize="12"/>
-        <TextBox Background="#374151"
+        <TextBox Text="{Binding NewPassword, Mode=TwoWay}"
+                 Background="#374151"
                  Foreground="White"
                  BorderBrush="Transparent"
                  Height="30"
                  PasswordChar="●"/>
 
-        <!-- Professional Details -->
         <TextBlock Text="Professional Details"
                    FontSize="14"
                    FontWeight="Bold"
                    Foreground="White"
                    Margin="0,12,0,4"/>
         <TextBlock Text="Specialties" Foreground="White" FontSize="12"/>
-        <TextBox Background="#374151"
+        <TextBox Text="{Binding Specialities[0], Mode=TwoWay}"
+                 Background="#374151"
                  Foreground="White"
                  BorderBrush="Transparent"
                  Height="30"/>
 
-        <!-- Service Locations -->
         <TextBlock Text="Service Locations" Foreground="White" FontSize="12"/>
-        <Border Background="#374151"
-                CornerRadius="12"
-                Padding="4,2"
-                Cursor="Hand">
-          <TextBlock Text="+ Add" Foreground="White" FontSize="12"/>
-        </Border>
+        <TextBox Text="{Binding ServiceLocations[0], Mode=TwoWay}"
+                 Background="#374151"
+                 Foreground="White"
+                 BorderBrush="Transparent"
+                 Height="30"/>
 
-        <!-- Create Account Button -->
         <Button Content="Create account"
+                Command="{Binding SaveProfileCommand}"
                 Background="#2563eb"
                 Foreground="White"
                 FontWeight="Bold"
@@ -103,7 +103,6 @@
                 Margin="0,12,0,0"
                 BorderBrush="Transparent"/>
 
-        <!-- Already have an account? Sign in -->
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     Margin="0,8,0,0">

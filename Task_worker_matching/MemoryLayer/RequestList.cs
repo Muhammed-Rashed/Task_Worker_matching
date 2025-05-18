@@ -53,7 +53,10 @@ public class RequestList: IMemory<Request>
     {
         return new List<Request>(_requests);
     }
-
+    public List<Request> Get_Completed() //still needs to be implmented
+    {
+        return new List<Request>(_requests);
+    }
     public bool IsEmpty()
     {
         return _requests.Count == 0;

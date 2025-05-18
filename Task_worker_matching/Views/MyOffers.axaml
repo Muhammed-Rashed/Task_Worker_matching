@@ -1,17 +1,20 @@
 <UserControl xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Class="Task_worker_matching.Views.MyOffers"
-        Width="800" Height="600"
-        Background="#111827">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Task_worker_matching.Views.MyOffers"
+             Width="800" Height="600"
+             Background="#111827">
+
+  <UserControl.DataContext>
+    <!-- Replace with your actual ViewModel binding -->
+    <vm:MyOffersViewModel xmlns:vm="clr-namespace:Task_worker_matching.ViewModels" />
+  </UserControl.DataContext>
 
   <Grid>
-    <!-- 5% / 90% / 5% rows -->
     <Grid.RowDefinitions>
       <RowDefinition Height="0.05*"/>
       <RowDefinition Height="0.9*"/>
       <RowDefinition Height="0.05*"/>
     </Grid.RowDefinitions>
-    <!-- 5% / 90% / 5% columns -->
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="0.05*"/>
       <ColumnDefinition Width="0.9*"/>
@@ -19,7 +22,7 @@
     </Grid.ColumnDefinitions>
 
     <!-- Navigation Bar -->
-    <StackPanel Grid.Row="0" Grid.Column="1"
+    <StackPanel x:Name="NavPanel" Grid.Row="0" Grid.Column="1"
                 Orientation="Horizontal"
                 Spacing="10"
                 HorizontalAlignment="Center"
@@ -33,7 +36,7 @@
       <Button Content="Log Out" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
     </StackPanel>
 
-    <!-- Backdrop Panel -->
+    <!-- Main Panel -->
     <Border Grid.Row="1" Grid.Column="1"
             Background="#1f2937"
             CornerRadius="25"
@@ -43,58 +46,43 @@
         <!-- Heading -->
         <TextBlock Text="My Offers" FontSize="18" FontWeight="Bold" Foreground="White"/>
 
-        <!-- Scrollable Offer Cards -->
+        <!-- Offers List -->
         <ScrollViewer Height="650" VerticalScrollBarVisibility="Auto">
-          <StackPanel Spacing="16">
-
-            <!-- Offer Card -->
-            <Border Background="#111827" CornerRadius="8" Padding="16" BorderBrush="#425f9e" BorderThickness="1">
-              <StackPanel Spacing="8">
-                <TextBlock Text="Website Redesign Project" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                <TextBlock Text="Client: John Smith" Foreground="LightGray" FontSize="12"/>
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                  <TextBlock Text="📍 Remote" Foreground="LightGray" FontSize="12"/>
-                  <TextBlock Text="💲 $500" Foreground="LightGray" FontSize="12"/>
-                  <TextBlock Text="📅 Sent: Oct 15, 2023" Foreground="LightGray" FontSize="12"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                  <Button Content="View Request" Background="#2563eb" Foreground="White" Padding="6,2" BorderBrush="Transparent"/>
-                  <Button Content="Cancel Offer" Background="#111827" Foreground="Red" Padding="6,2" BorderBrush="Red" BorderThickness="1"/>
-                </StackPanel>
-                <TextBlock Text="Pending" Foreground="#f2cf39" HorizontalAlignment="Right"/>
-              </StackPanel>
-            </Border>
-
-            <!-- Repeat the card for other offers -->
-            <Border Background="#111827" CornerRadius="8" Padding="16" BorderBrush="#425f9e" BorderThickness="1">
-              <StackPanel Spacing="8">
-                <TextBlock Text="Mobile App Development" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                <TextBlock Text="Client: Tech Solutions Inc" Foreground="LightGray" FontSize="12"/>
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                  <TextBlock Text="📍 New York, NY" Foreground="LightGray" FontSize="12"/>
-                  <TextBlock Text="💲 $2,000" Foreground="LightGray" FontSize="12"/>
-                  <TextBlock Text="📅 Sent: Oct 10, 2023" Foreground="LightGray" FontSize="12"/>
-                </StackPanel>
-                <Button Content="View Request" Background="#2563eb" Foreground="White" Padding="6,2" BorderBrush="Transparent"/>
-                <TextBlock Text="Accepted" Foreground="#22c55e" HorizontalAlignment="Right"/>
-              </StackPanel>
-            </Border>
-
-            <Border Background="#111827" CornerRadius="8" Padding="16" BorderBrush="#425f9e" BorderThickness="1">
-              <StackPanel Spacing="8">
-                <TextBlock Text="Logo Design Project" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                <TextBlock Text="Client: Creative Agency" Foreground="LightGray" FontSize="12"/>
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                  <TextBlock Text="📍 Remote" Foreground="LightGray" FontSize="12"/>
-                  <TextBlock Text="💲 $300" Foreground="LightGray" FontSize="12"/>
-                  <TextBlock Text="📅 Sent: Oct 5, 2023" Foreground="LightGray" FontSize="12"/>
-                </StackPanel>
-                <Button Content="View Request" Background="#2563eb" Foreground="White" Padding="6,2" BorderBrush="Transparent"/>
-                <TextBlock Text="Declined" Foreground="#dc2626" HorizontalAlignment="Right"/>
-              </StackPanel>
-            </Border>
-
-          </StackPanel>
+          <ItemsControl Items="{Binding Offers}">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <Border Background="#111827" CornerRadius="8" Padding="16" BorderBrush="#425f9e" BorderThickness="1" Margin="0 0 0 16">
+                  <StackPanel Spacing="8">
+                    <TextBlock Text="{Binding Request.Title}" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="Client: {Binding Request.Requester.Name}" Foreground="LightGray" FontSize="12"/>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                      <TextBlock Text="📍 {Binding Request.Location}" Foreground="LightGray" FontSize="12"/>
+                      <TextBlock Text="💲 {Binding Fee}" Foreground="LightGray" FontSize="12"/>
+                      <TextBlock Text="📅 Sent: {Binding SentDate, StringFormat='{}{0:MMM dd, yyyy}'}" Foreground="LightGray" FontSize="12"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                      <Button Content="View Request"
+                              Background="#2563eb"
+                              Foreground="White"
+                              Padding="6,2"
+                              BorderBrush="Transparent"
+                              Command="{Binding DataContext.ViewRequestCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                              CommandParameter="{Binding}" />
+                      <Button Content="Cancel Offer"
+                              Background="#111827"
+                              Foreground="Red"
+                              Padding="6,2"
+                              BorderBrush="Red"
+                              BorderThickness="1"
+                              Command="{Binding DataContext.CancelOfferCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                              CommandParameter="{Binding}" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding Status}" Foreground="{Binding Status, Converter={StaticResource StatusToColorConverter}}" HorizontalAlignment="Right"/>
+                  </StackPanel>
+                </Border>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
         </ScrollViewer>
 
       </StackPanel>

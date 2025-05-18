@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using PersistenceLayer;
 using Task_worker_matching.Memory_Layer;
-namespace ServiceLayer
+namespace Task_worker_matching.ServiceLayer
 {
     class Cache<T> : IDataService<T>
     {

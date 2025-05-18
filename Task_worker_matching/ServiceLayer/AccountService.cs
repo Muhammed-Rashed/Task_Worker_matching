@@ -2,14 +2,14 @@ using System.Runtime.InteropServices;
 using Task_worker_matching.Memory_Layer;
 using PersistenceLayer;
 
-namespace ServiceLayer;
+namespace Task_worker_matching.ServiceLayer;
 
 public class AccountService
 {
     private User currentUser;
     private Authenticator auth;
     private IUserRepository userRepo;
-
+    public User GetCurrentUser() => currentUser;
     public AccountValidation signup(User user)
     {
         AccountValidation state = auth.signup_authentication(user);
