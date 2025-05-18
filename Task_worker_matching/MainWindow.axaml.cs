@@ -1,22 +1,26 @@
 using Avalonia.Controls;
-using Avalonia.Interactivity;
+using Task_worker_matching.Controllers;
+using Task_worker_matching.Views;
 
 namespace Task_worker_matching;
 
 public partial class MainWindow : Window
 {
+    private readonly NavbarController _navbarController = new();
+
     public MainWindow()
     {
         InitializeComponent();
+
+        Navigator.Instance.SetContentControl(MainContent);
+        // Show login first
+        ShowWelcome();
     }
 
-    private void Signup_Click(object? sender, RoutedEventArgs e)
+    private void ShowWelcome()
     {
-        throw new System.NotImplementedException();
-    }
-
-    private void Login_Click(object? sender, RoutedEventArgs e)
-    {
-        throw new System.NotImplementedException();
+        var welcomePage = new Views.WelcomePage();
+        
+        MainContent.Content = welcomePage;
     }
 }

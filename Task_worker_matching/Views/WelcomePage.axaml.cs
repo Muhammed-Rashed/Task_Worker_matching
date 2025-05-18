@@ -1,29 +1,26 @@
-﻿using Avalonia;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
+using Task_worker_matching.Controllers;
 
-namespace Task_worker_matching;
-
-public partial class WelcomePage : UserControl
+namespace Task_worker_matching.Views
 {
-    public WelcomePage()
+    public partial class WelcomePage : UserControl
     {
-        InitializeComponent();
-    }
+        // Events to notify the MainWindow to switch pages
 
-    private void InitializeComponent()
-    {
-        throw new System.NotImplementedException();
-    }
+        public WelcomePage()
+        {
+            InitializeComponent();
+        }
 
-    private void Login_Click(object? sender, RoutedEventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
+        private void Login_Click(object? sender, RoutedEventArgs e)
+        {
+            Navigator.Instance.Navigate(new Login());
+        }
 
-    private void Signup_Click(object? sender, RoutedEventArgs e)
-    {
-        throw new System.NotImplementedException();
+        private void SignUpChoice_Click(object? sender, RoutedEventArgs e)
+        {
+            Navigator.Instance.Navigate(new SignupChoicePage());
+        }
     }
 }

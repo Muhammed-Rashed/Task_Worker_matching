@@ -34,9 +34,5 @@
     <Compile Update="Views\WorkerHome.asaml.cs">
       <DependentUpon>WorkerHome.axaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\ClientNavBar.axaml.cs">
-      <DependentUpon>NavBar.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
 </Project>

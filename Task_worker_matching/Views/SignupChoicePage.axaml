@@ -1,7 +1,7 @@
 <!-- SignupChoiceWindow.xaml - Signup Options Page -->
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="Task_worker_matching.SignupChoicePage"
+             x:Class="Task_worker_matching.Views.SignupChoicePage"
              Width="800" Height="500">
     <Grid Background="#1E1E2F">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="20">
@@ -25,7 +25,9 @@
                                 Width="160"
                                 Background="Black"
                                 Foreground="White"
-                                HorizontalAlignment="Center"/>
+                                HorizontalAlignment="Center"
+                                Click="ClientButton_Click"/>
+                                
                         <TextBlock Text="📌 Find professionals for your tasks."
                                    Foreground="Gray"
                                    FontSize="12"
@@ -47,7 +49,9 @@
                                 Width="160"
                                 Background="Black"
                                 Foreground="White"
-                                HorizontalAlignment="Center"/>
+                                HorizontalAlignment="Center"
+                                Click="WorkerButton_Click"/>
+                                
                         <TextBlock Text="📌 Offer your professional services."
                                    Foreground="Gray"
                                    FontSize="12"
@@ -57,12 +61,16 @@
             </StackPanel>
 
             <!-- Login Link -->
-            <TextBlock x:Name="LoginLink"
-                       Text="Already have an account? Login"
-                       Foreground="DodgerBlue"
-                       HorizontalAlignment="Center"
-                       Cursor="Hand"
-                       TextDecorations="Underline"/>
+            <Button x:Name="LoginLink"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Foreground="#2563eb"
+                    FontSize="11"
+                    Padding="0"
+                    Content="Already have an account? Login"
+                    Cursor="Hand"
+                    Click="LoginLinkButton_Click"/>
+                       
         </StackPanel>
     </Grid>
 </UserControl>

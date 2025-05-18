@@ -87,7 +87,8 @@
                   FontSize="11"
                   Padding="0"
                   Content="Sign up"
-                  Cursor="Hand"/>
+                  Cursor="Hand"
+                  Click="SignupLinkButton_Click"/>
         </StackPanel>
 
       </StackPanel>

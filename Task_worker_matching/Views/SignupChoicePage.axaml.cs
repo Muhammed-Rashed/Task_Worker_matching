@@ -1,10 +1,10 @@
-using Avalonia;
+using System;
 using Avalonia.Controls;
-using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Task_worker_matching.Controllers;
 
-namespace Task_worker_matching
+namespace Task_worker_matching.Views
 {
     public partial class SignupChoicePage : UserControl
     {
@@ -17,50 +17,26 @@ namespace Task_worker_matching
         {
             AvaloniaXamlLoader.Load(this);
 
-            this.FindControl<Button>("ClientButton").Click += ClientSignup_Click;
-            this.FindControl<Button>("WorkerButton").Click += WorkerSignup_Click;
-            this.FindControl<TextBlock>("LoginLink").PointerPressed += LoginLink_Click;
+            this.FindControl<Button>("ClientButton").Click += ClientButton_Click;
+            this.FindControl<Button>("WorkerButton").Click += WorkerButton_Click;
+            this.FindControl<Button>("LoginLink").Click += LoginLinkButton_Click;
+
         }
 
-        private void ClientSignup_Click(object? sender, RoutedEventArgs e)
+        private void ClientButton_Click(object? sender, RoutedEventArgs e)
         {
-            ShowMessage("Client signup clicked!");
+            Console.WriteLine("Client button clicked");
+            Navigator.Instance.Navigate(new ClientSignUp());
         }
 
-        private void WorkerSignup_Click(object? sender, RoutedEventArgs e)
+        private void WorkerButton_Click(object? sender, RoutedEventArgs e)
         {
-            ShowMessage("Worker signup clicked!");
+            Navigator.Instance.Navigate(new WorkerSignUp());
         }
 
-        private void LoginLink_Click(object? sender, PointerPressedEventArgs e)
+        private void LoginLinkButton_Click(object? sender, RoutedEventArgs e)
         {
-            ShowMessage("Navigate to login page.");
-        }
-
-        private async void ShowMessage(string message)
-        {
-            var dialog = new Window
-            {
-                Width = 300,
-                Height = 150,
-                Content = new StackPanel
-                {
-                    Margin = new Thickness(20),
-                    Children =
-                    {
-                        new TextBlock { Text = message, Margin = new Thickness(0, 0, 0, 20) },
-                        new Button
-                        {
-                            Content = "OK",
-                            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-                            Width = 80
-                        }
-                    }
-                }
-            };
-
-            var okButton = ((StackPanel)dialog.Content).Children[1] as Button;
-            okButton.Click += (_, _) => dialog.Close();
+            Navigator.Instance.Navigate(new Login());
         }
     }
 }
