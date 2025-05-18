@@ -1,14 +1,15 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Task_worker_matching.Controllers;
 using Task_worker_matching.Memory_Layer;
 using Task_worker_matching.ServiceLayer;
+using Task_worker_matching.Views;
 
 namespace Task_worker_matching.ViewModels
 {
     public class MyOffersViewModel : ViewModelBase
     {
         private readonly WorkerOfferService _service = new();
-        private readonly NavigationService _nav = NavigationService.Instance;
 
         public ObservableCollection<Offer> Offers { get; set; }
 
@@ -34,13 +35,13 @@ namespace Task_worker_matching.ViewModels
             CancelOfferCommand = new RelayCommand<Offer>(CancelOffer);
 
             // Navigation commands
-            NavigateHomeCommand = new RelayCommand(() => _nav.NavigateTo("WorkerHome"));
-            NavigateMyOffersCommand = new RelayCommand(() => _nav.NavigateTo("MyOffersPage"));
-            NavigateOpenRequestsCommand = new RelayCommand(() => _nav.NavigateTo("OpenRequestsPage"));
-            NavigateExecutionCommand = new RelayCommand(() => _nav.NavigateTo("ExecutionPage"));
-            NavigateQuestionsCommand = new RelayCommand(() => _nav.NavigateTo("QuestionsPage"));
-            NavigateProfileCommand = new RelayCommand(() => _nav.NavigateTo("WorkerProfile"));
-            LogoutCommand = new RelayCommand(() => _nav.Logout());
+            NavigateHomeCommand = new CommunityToolkit.Mvvm.Input.RelayCommand(() => Navigator.Instance.Navigate(new WorkerHome()));
+            NavigateMyOffersCommand = new CommunityToolkit.Mvvm.Input.RelayCommand(() => Navigator.Instance.Navigate(new MyOffersPage()));
+            NavigateOpenRequestsCommand = new CommunityToolkit.Mvvm.Input.RelayCommand(() => Navigator.Instance.Navigate(new OpenRequests()));
+            NavigateExecutionCommand = new CommunityToolkit.Mvvm.Input.RelayCommand(() => Navigator.Instance.Navigate(new TaskExecution()));
+            NavigateQuestionsCommand = new CommunityToolkit.Mvvm.Input.RelayCommand(() => Navigator.Instance.Navigate(new QuestionsPage()));
+            NavigateProfileCommand = new CommunityToolkit.Mvvm.Input.RelayCommand(() => Navigator.Instance.Navigate(new WorkerProfile()));
+            LogoutCommand = new CommunityToolkit.Mvvm.Input.RelayCommand(() => Navigator.Instance.Navigate(new Login()));
         }
 
         private void LoadOffers()

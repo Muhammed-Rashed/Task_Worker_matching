@@ -10,7 +10,6 @@ namespace Task_worker_matching.Views
         public MyOffersPage()
         {
             InitializeComponent();
-            _navbarController.Init(this.FindControl<StackPanel>("NavPanel"));
         }
     }
 }

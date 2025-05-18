@@ -5,15 +5,17 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using Task_worker_matching.Controllers;
 using Task_worker_matching.Memory_Layer;
 using Task_worker_matching.ServiceLayer;
+using Task_worker_matching.Views;
 
 namespace Task_worker_matching.ViewModels
 {
     public class WorkerSignUpViewModel : INotifyPropertyChanged
     {
         private readonly AccountService _accountService = new();
-        private readonly NavigationService _nav = NavigationService.Instance;
+
 
         // Properties bound to the UI
         public string FullName
@@ -65,7 +67,7 @@ namespace Task_worker_matching.ViewModels
         public WorkerSignUpViewModel()
         {
             RegisterCommand = new RelayCommand(RegisterWorker);
-            NavigateLoginCommand = new RelayCommand(() => _nav.NavigateTo("Login"));
+            NavigateLoginCommand = new CommunityToolkit.Mvvm.Input.RelayCommand(() => Navigator.Instance.Navigate(new Login()));
         }
 
         private void RegisterWorker()
@@ -90,7 +92,7 @@ namespace Task_worker_matching.ViewModels
 
             if (result == AccountValidation.AllCorrect)
             {
-                _nav.NavigateTo("WorkerHome");
+                new CommunityToolkit.Mvvm.Input.RelayCommand(() => Navigator.Instance.Navigate(new WorkerHome()));
             }
             else
             {

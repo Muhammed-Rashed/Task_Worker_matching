@@ -5,13 +5,13 @@ using System.Windows.Input;
 using Task_worker_matching.Memory_Layer;
 using Task_worker_matching.ServiceLayer;
 using System.Linq;
-using System.Collections.Generic;
+using Task_worker_matching.Controllers;
+using Task_worker_matching.Views;
 
 namespace Task_worker_matching.ViewModels
 {
     public class OpenRequestsViewModel : INotifyPropertyChanged
     {
-        private readonly NavigationService _nav = NavigationService.Instance;
         private readonly RequestService _requestService = new();
 
         public ObservableCollection<Request> OpenRequests { get; }
@@ -32,12 +32,12 @@ namespace Task_worker_matching.ViewModels
                                .ToList()
             );
 
-            NavigateHomeCommand = new RelayCommand(() => _nav.NavigateTo("WorkerHome"));
-            NavigateMyOffersCommand = new RelayCommand(() => _nav.NavigateTo("MyOffersPage"));
-            NavigateExecutionCommand = new RelayCommand(() => _nav.NavigateTo("ExecutionPage"));
-            NavigateQuestionsCommand = new RelayCommand(() => _nav.NavigateTo("QuestionsPage"));
-            NavigateProfileCommand = new RelayCommand(() => _nav.NavigateTo("WorkerProfile"));
-            LogoutCommand = new RelayCommand(() => _nav.Logout());
+            NavigateHomeCommand = new RelayCommand(() => Navigator.Instance.Navigate(new WorkerHome()));
+            NavigateMyOffersCommand = new RelayCommand(() => Navigator.Instance.Navigate(new MyOffersPage()));
+            NavigateExecutionCommand = new RelayCommand(() => Navigator.Instance.Navigate(new TaskExecution()));
+            NavigateQuestionsCommand = new RelayCommand(() => Navigator.Instance.Navigate(new QuestionsPage()));
+            NavigateProfileCommand = new RelayCommand(() => Navigator.Instance.Navigate(new WorkerProfile()));
+            LogoutCommand = new RelayCommand(() => Navigator.Instance.Navigate(new Login()));
             FilterRequestsCommand = new RelayCommand(FilterRequests);
         }
 
