@@ -17,14 +17,15 @@ namespace PersistenceLayer
                     using (var conn = PM.GetOpenConnection())
                     {
                         string insertQuery = @"
-                            INSERT INTO Client (Name, Email, PhoneNum, Address, Overall_rating, Payment_info)
+                            INSERT INTO Client (Name, Email, Password, PhoneNum, Address, Overall_rating, Payment_info)
                             OUTPUT INSERTED.Id
-                            VALUES (@Name, @Email, @PhoneNum, @Address, @Overall_rating, @Payment_info);
+                            VALUES (@Name, @Email, @Password, @PhoneNum, @Address, @Overall_rating, @Payment_info);
                             SELECT SCOPE_IDENTITY();";
 
                         using var cmd = new SqlCommand(insertQuery, conn);
                         cmd.Parameters.AddWithValue("@Name", client.get_name());
                         cmd.Parameters.AddWithValue("@Email", client.get_email());
+                        cmd.Parameters.AddWithValue("@Password", client.get_password());
                         cmd.Parameters.AddWithValue("@PhoneNum", client.get_phone_number());
                         cmd.Parameters.AddWithValue("@Address", client.get_address());
                         cmd.Parameters.AddWithValue("@Overall_rating", client.get_overall_rating());
@@ -58,7 +59,7 @@ namespace PersistenceLayer
                 using (var conn = PM.GetOpenConnection())
                 {
                     string selectQuery = @"
-                        SELECT Id, Name, Email, PhoneNum, Address, Overall_rating, Payment_info
+                        SELECT Id, Name, Email, Password, PhoneNum, Address, Overall_rating, Payment_info
                         FROM Client;";
 
                     using var cmd = new SqlCommand(selectQuery, conn);
@@ -70,11 +71,12 @@ namespace PersistenceLayer
 
                         client.set_user_ID(reader.GetInt32(0));
                         client.set_name(reader.GetString(1));
-                        client.set_email(reader.GetString(2));
-                        client.set_phone_number(reader.GetString(3));
-                        client.set_address(reader.GetString(4));
-                        client.set_overall_rating(Convert.ToDouble(reader.GetDecimal(5)));
-                        client.set_payment_info(reader.GetString(6));
+                        client.set_password(reader.GetString(2));
+                        client.set_email(reader.GetString(3));
+                        client.set_phone_number(reader.GetString(4));
+                        client.set_address(reader.GetString(5));
+                        client.set_overall_rating(Convert.ToDouble(reader.GetDecimal(6)));
+                        client.set_payment_info(reader.GetString(7));
 
                         clients.Add(client);
                     }
@@ -96,7 +98,7 @@ namespace PersistenceLayer
                 using (var conn = PM.GetOpenConnection())
                 {
                     string selectQuery = @"
-                        SELECT Id, Name, Email, PhoneNum, Address, Overall_rating, Payment_info
+                        SELECT Id, Name, Email, Password, PhoneNum, Address, Overall_rating, Payment_info
                         FROM Client
                         WHERE Email = @Email;";
 
@@ -110,11 +112,12 @@ namespace PersistenceLayer
                     {
                         client.set_user_ID(reader.GetInt32(0));
                         client.set_name(reader.GetString(1));
-                        client.set_email(reader.GetString(2));
-                        client.set_phone_number(reader.GetString(3));
-                        client.set_address(reader.GetString(4));
-                        client.set_overall_rating(Convert.ToDouble(reader.GetDecimal(5)));
-                        client.set_payment_info(reader.GetString(6));
+                        client.set_password(reader.GetString(2));
+                        client.set_email(reader.GetString(3));
+                        client.set_phone_number(reader.GetString(4));
+                        client.set_address(reader.GetString(5));
+                        client.set_overall_rating(Convert.ToDouble(reader.GetDecimal(6)));
+                        client.set_payment_info(reader.GetString(7));
                     }
                     else
                     {
@@ -126,7 +129,7 @@ namespace PersistenceLayer
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error retrieving requests: {ex.Message}");
+                Console.WriteLine($"Error retrieving user: {ex.Message}");
                 return null;
             }
         }
@@ -143,6 +146,7 @@ namespace PersistenceLayer
                             UPDATE Client
                             SET Name = @Name,
                                 Email = @Email,
+                                Password = @Password,
                                 PhoneNum = @PhoneNum,
                                 Address = @Address,
                                 Overall_rating = @Overall_rating,
@@ -152,6 +156,7 @@ namespace PersistenceLayer
                         using var cmd = new SqlCommand(updateQuery, conn);
                         cmd.Parameters.AddWithValue("@Name", new_client.get_name());
                         cmd.Parameters.AddWithValue("@Email", new_client.get_email());
+                        cmd.Parameters.AddWithValue("@Password", new_client.get_password());
                         cmd.Parameters.AddWithValue("@PhoneNum", new_client.get_phone_number());
                         cmd.Parameters.AddWithValue("@Address", new_client.get_address());
                         cmd.Parameters.AddWithValue("@Overall_rating", new_client.get_overall_rating());
@@ -170,7 +175,7 @@ namespace PersistenceLayer
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error updating worker offer: {ex.Message}");
+                Console.WriteLine($"Error updating user: {ex.Message}");
                 return false;
             }
         }
@@ -194,7 +199,7 @@ namespace PersistenceLayer
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error deleting worker offer: {ex.Message}");
+                Console.WriteLine($"Error deleting user: {ex.Message}");
                 return false;
             }
         }

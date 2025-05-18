@@ -118,6 +118,9 @@ public class SignUpMenu(AccountService service)
             case AccountValidation.AllCorrect:
                 Console.Out.WriteLine($"Account Created successfully, Welcome {user.get_name}");
                 return true;
+            case AccountValidation.EmailWrong:
+                Console.Error.WriteLine("Email already exists or has incorrect format");
+                return false;
             case AccountValidation.PasswordWrong:
                 Console.Error.WriteLine("Password has incorrect format");
                 return false;

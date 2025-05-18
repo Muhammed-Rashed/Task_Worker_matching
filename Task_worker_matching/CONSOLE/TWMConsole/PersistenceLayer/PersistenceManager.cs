@@ -29,7 +29,7 @@ namespace PersistenceLayer
         {
 
             // Create the DB if it doesn't exist
-            string masterConnectionString = @"Server=(localdb)\v11.0;Database=master;Trusted_Connection=True;";
+            string masterConnectionString = @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;Encrypt=false;";
             using (var masterConn = new SqlConnection(masterConnectionString))
             {
                 masterConn.Open();
@@ -39,13 +39,14 @@ namespace PersistenceLayer
                 createDbCmd.ExecuteNonQuery();
             }
 
-            string connectionString = @"Server=(localdb)\v11.0;Database=database;Trusted_Connection=True;";
+            string connectionString = @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;Encrypt=false;";
             string createClientTable = @"
             IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Client' AND xtype='U')
             CREATE TABLE Client (
                 Id INT PRIMARY KEY IDENTITY(1,1),
                 Name VARCHAR(50),
                 Email VARCHAR(100) UNIQUE,
+                Password VARCHAR(20),
                 PhoneNum VARCHAR(15),
                 Address VARCHAR(100),
                 Overall_rating DECIMAL(2,1),
@@ -58,6 +59,7 @@ namespace PersistenceLayer
                 Id INT PRIMARY KEY IDENTITY(1,1),
                 Name VARCHAR(50),
                 Email VARCHAR(100) UNIQUE,
+                Password VARCHAR(20),
                 PhoneNum VARCHAR(15),
                 Available_locations VARCHAR(500),
                 Overall_rating DECIMAL(2,1),
@@ -206,7 +208,7 @@ namespace PersistenceLayer
 
         public SqlConnection GetOpenConnection()
         {
-            string connectionString = @"Server=(localdb)\v11.0;Database=database;Trusted_Connection=True;";
+            string connectionString = @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;Encrypt=false;";
 
             var connection = new SqlConnection(connectionString);
             connection.Open();

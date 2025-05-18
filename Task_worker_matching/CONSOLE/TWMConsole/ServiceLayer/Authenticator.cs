@@ -65,10 +65,7 @@ public class Authenticator
 
             if (foundClient == null)
             {
-                if (userRepo.add_user(user))
-                    return AccountValidation.AllCorrect;
-
-                return AccountValidation.EmailWrong;
+                return AccountValidation.AllCorrect;
             }
             else
             {
@@ -83,10 +80,7 @@ public class Authenticator
 
             if (foundWorker == null)
             {
-                if (userRepo.add_user(user))
-                    return AccountValidation.AllCorrect;
-
-                return AccountValidation.EmailWrong;
+                return AccountValidation.AllCorrect;
             }
             else
             {

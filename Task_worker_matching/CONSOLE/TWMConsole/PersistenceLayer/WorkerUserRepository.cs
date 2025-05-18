@@ -19,13 +19,14 @@ namespace PersistenceLayer
                     try
                     {
                         string insertQuery = @"
-                            INSERT INTO Worker (Name, Email, PhoneNum, Available_locations, Overall_rating, Available_start_time, Available_end_time)
+                            INSERT INTO Worker (Name, Email, Password, PhoneNum, Available_locations, Overall_rating, Available_start_time, Available_end_time)
                             OUTPUT INSERTED.Id
                             VALUES (@Name, @Email, @PhoneNum, @Available_locations, @Overall_rating, @Available_start_time, @Available_end_time);";
 
                         using var cmd = new SqlCommand(insertQuery, conn, tx);
                         cmd.Parameters.AddWithValue("@Name", worker.get_name());
                         cmd.Parameters.AddWithValue("@Email", worker.get_email());
+                        cmd.Parameters.AddWithValue("@Password", worker.get_password());
                         cmd.Parameters.AddWithValue("@PhoneNum", worker.get_phone_number());
                         cmd.Parameters.AddWithValue("@Available_locations", worker.GetAvailableLocations());
                         cmd.Parameters.AddWithValue("@Overall_rating", worker.get_overall_rating());
@@ -117,7 +118,7 @@ namespace PersistenceLayer
                 using (var conn = PM.GetOpenConnection())
                 {
                     string selectQuery = @"
-                        SELECT Id, Name, Email, PhoneNum, Available_locations, Overall_rating, Available_start_time, Available_end_time
+                        SELECT Id, Name, Email, Password, PhoneNum, Available_locations, Overall_rating, Available_start_time, Available_end_time
                         FROM Worker;";
 
                     using var cmd = new SqlCommand(selectQuery, conn);
@@ -130,9 +131,10 @@ namespace PersistenceLayer
                         worker.set_user_ID(reader.GetInt32(0));
                         worker.set_name(reader.GetString(1));
                         worker.set_email(reader.GetString(2));
-                        worker.set_phone_number(reader.GetString(3));
-                        worker.SetAvailableLocations(reader.GetString(4));
-                        worker.set_overall_rating(Convert.ToDouble(reader.GetDecimal(5)));
+                        worker.set_password(reader.GetString(3));
+                        worker.set_phone_number(reader.GetString(4));
+                        worker.SetAvailableLocations(reader.GetString(5));
+                        worker.set_overall_rating(Convert.ToDouble(reader.GetDecimal(6)));
                         worker.SetAvailableStartTime(reader.GetTimeSpan(7));
                         worker.SetAvailableEndTime(reader.GetTimeSpan(8));
 
@@ -159,7 +161,7 @@ namespace PersistenceLayer
                 using (var conn = PM.GetOpenConnection())
                 {
                     string selectQuery = @"
-                        SELECT Id, Name, Email, PhoneNum, Available_locations, Overall_rating, Available_start_time, Available_end_time
+                        SELECT Id, Name, Email, Password, PhoneNum, Available_locations, Overall_rating, Available_start_time, Available_end_time
                         FROM Worker
                         WHERE Email = @Email;";
 
@@ -174,11 +176,12 @@ namespace PersistenceLayer
                         worker.set_user_ID(reader.GetInt32(0));
                         worker.set_name(reader.GetString(1));
                         worker.set_email(reader.GetString(2));
-                        worker.set_phone_number(reader.GetString(3));
-                        worker.SetAvailableLocations(reader.GetString(4));
-                        worker.set_overall_rating(Convert.ToDouble(reader.GetDecimal(5)));
-                        worker.SetAvailableStartTime(reader.GetTimeSpan(6));
-                        worker.SetAvailableEndTime(reader.GetTimeSpan(7));
+                        worker.set_password(reader.GetString(3));
+                        worker.set_phone_number(reader.GetString(4));
+                        worker.SetAvailableLocations(reader.GetString(5));
+                        worker.set_overall_rating(Convert.ToDouble(reader.GetDecimal(6)));
+                        worker.SetAvailableStartTime(reader.GetTimeSpan(7));
+                        worker.SetAvailableEndTime(reader.GetTimeSpan(8));
 
                         // Set specialities (make sure GetSpecialities expects open connection)
                         worker.SetSpecialities(GetSpecialities(worker.get_user_ID(), conn));
@@ -212,6 +215,7 @@ namespace PersistenceLayer
                             UPDATE Worker
                             SET Name = @Name,
                                 Email = @Email,
+                                Password = @Password,
                                 PhoneNum = @PhoneNum,
                                 Available_locations @Available_locations,
                                 Overall_rating = @Overall_rating,
@@ -222,6 +226,7 @@ namespace PersistenceLayer
                         using var cmd = new SqlCommand(updateQuery, conn, tx);
                         cmd.Parameters.AddWithValue("@Name", new_worker.get_name());
                         cmd.Parameters.AddWithValue("@Email", new_worker.get_email());
+                        cmd.Parameters.AddWithValue("@Password", new_worker.get_password());
                         cmd.Parameters.AddWithValue("@PhoneNum", new_worker.get_phone_number());
                         cmd.Parameters.AddWithValue("@Available_locations", new_worker.GetAvailableLocations());
                         cmd.Parameters.AddWithValue("@Overall_rating", new_worker.get_overall_rating());
