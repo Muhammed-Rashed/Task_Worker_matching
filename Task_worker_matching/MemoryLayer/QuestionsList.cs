@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Task_worker_matching.Memory_Layer;
 
-public class QuestionsList
+public class QuestionsList : IMemory<Question>
 {
     private List<Question> questions = new List<Question>();
 
-    public bool add(Question item)
+    public bool AddItem(Question item)
     {
         if (item != null)
         {
@@ -17,7 +17,7 @@ public class QuestionsList
         return false;
     }
 
-    public bool update(Question newItem, Question oldItem)
+    public bool Update(Question newItem, Question oldItem)
     {
         if (newItem == null || oldItem == null)
             return false;
@@ -31,7 +31,7 @@ public class QuestionsList
         return false;
     }
 
-    public bool delete(Question item)
+    public bool DeleteItem(Question item)
     {
         if (item != null)
         {
@@ -45,7 +45,7 @@ public class QuestionsList
         return questions;
     }
 
-    public void set_data(List<Question> newQuestions)
+    public void Set_Data(List<Question> newQuestions)
     {
         if (newQuestions != null)
         {
@@ -58,6 +58,11 @@ public class QuestionsList
         return questions.Count == 0;
     }
 
+    public List<Question> Get_Data()
+    {
+        return questions;
+    }
+
     public Question get_byID(int id)
     {
         foreach (var question in questions)
@@ -67,4 +72,5 @@ public class QuestionsList
         }
         return null;
     }
+
 }

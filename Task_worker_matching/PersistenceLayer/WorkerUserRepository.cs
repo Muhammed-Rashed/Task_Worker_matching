@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
-using Task_worker_matching.Memory_Layer;
+using MyAvaloniaApp.Memory_Layer;
 
 namespace PersistenceLayer
 {
@@ -151,7 +151,7 @@ namespace PersistenceLayer
             }
         }
 
-        public User get_user(int userID)
+        public User get_user(string email)
         {
             Worker worker = new();
             try
@@ -161,25 +161,33 @@ namespace PersistenceLayer
                     string selectQuery = @"
                         SELECT Id, Name, Email, PhoneNum, Available_locations, Overall_rating, Available_start_time, Available_end_time
                         FROM Worker
-                        WHERE Id = @Id;";
+                        WHERE Email = @Email;";
 
                     using var cmd = new SqlCommand(selectQuery, conn);
 
-                    cmd.Parameters.AddWithValue("@Id", userID);
+                    cmd.Parameters.AddWithValue("@Email", email);
 
                     using var reader = cmd.ExecuteReader();
 
-                    worker.set_user_ID(reader.GetInt32(0));
-                    worker.set_name(reader.GetString(1));
-                    worker.set_email(reader.GetString(2));
-                    worker.set_phone_number(reader.GetString(3));
-                    worker.SetAvailableLocations(reader.GetString(4));
-                    worker.set_overall_rating(Convert.ToDouble(reader.GetDecimal(5)));
-                    worker.SetAvailableStartTime(reader.GetTimeSpan(7));
-                    worker.SetAvailableEndTime(reader.GetTimeSpan(8));
+                    if (reader.Read())
+                    {
+                        worker.set_user_ID(reader.GetInt32(0));
+                        worker.set_name(reader.GetString(1));
+                        worker.set_email(reader.GetString(2));
+                        worker.set_phone_number(reader.GetString(3));
+                        worker.SetAvailableLocations(reader.GetString(4));
+                        worker.set_overall_rating(Convert.ToDouble(reader.GetDecimal(5)));
+                        worker.SetAvailableStartTime(reader.GetTimeSpan(6));
+                        worker.SetAvailableEndTime(reader.GetTimeSpan(7));
 
-                    // Set specialites
-                    worker.SetSpecialities(GetSpecialities(worker.get_user_ID(), conn));
+                        // Set specialities (make sure GetSpecialities expects open connection)
+                        worker.SetSpecialities(GetSpecialities(worker.get_user_ID(), conn));
+                    }
+                    else
+                    {
+                        // No worker found with this email
+                        return null;
+                    }
 
                 }
                 return worker;
@@ -187,7 +195,7 @@ namespace PersistenceLayer
             catch (Exception ex)
             {
                 Console.WriteLine($"Error retrieving requests: {ex.Message}");
-                return worker;
+                return null;
             }
         }
 

@@ -115,7 +115,8 @@ namespace PersistenceLayer
                 Location VARCHAR(100),
                 Placement_time DATETIME,
                 IsPrivate BIT,
-                Description VARCHAR(1000)
+                Description VARCHAR(1000),
+                Fee MONEY
             );";
 
             string createWorkerOfferTable = @"
@@ -168,7 +169,7 @@ namespace PersistenceLayer
                 Answerer_type BIT,
                 Answer_time DATETIME,
                 Answer_rate DECIMAL(2,1),
-                PRIMARY KEY (Question_id)
+                PRIMARY KEY (Question_id, Answerer_id, Answer_time)
             );";
 
             try

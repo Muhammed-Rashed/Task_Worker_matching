@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using PersistenceLayer;
-using Task_worker_matching.Memory_Layer;
+using MyAvaloniaApp.Memory_Layer;
 
 public class WorkerOfferRepoStrategy : IRepositoryStrategy<Offer>
 {
@@ -22,8 +22,7 @@ public class WorkerOfferRepoStrategy : IRepositoryStrategy<Offer>
                 string insertQuery = @"
                     INSERT INTO WorkerOffer (worker_id, Request_id, Expiration_time, Time, Fee, Message)
                     OUTPUT INSERTED.Id
-                    VALUES (@WorkerId, @RequestId, @ExpirationTime, @Time, @Fee, @Message);
-                    SELECT SCOPE_IDENTITY();";
+                    VALUES (@WorkerId, @RequestId, @ExpirationTime, @Time, @Fee, @Message);";
 
                 using var cmd = new SqlCommand(insertQuery, conn);
                 cmd.Parameters.AddWithValue("@WorkerId", item.GetWorker().GetId());
@@ -32,8 +31,6 @@ public class WorkerOfferRepoStrategy : IRepositoryStrategy<Offer>
                 cmd.Parameters.AddWithValue("@Time", item.GetTime());
                 cmd.Parameters.AddWithValue("@Fee", item.GetFee());
                 cmd.Parameters.AddWithValue("@Message", item.GetMessage());
-
-                item.SetId((int)cmd.ExecuteScalar());
 
                 int newId = Convert.ToInt32(cmd.ExecuteScalar());
                 item.SetId(newId); // Set the generated ID

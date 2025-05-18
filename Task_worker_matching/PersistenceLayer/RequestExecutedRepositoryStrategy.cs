@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
-using Task_worker_matching.Memory_Layer;
+using MyAvaloniaApp.Memory_Layer;
 
 namespace PersistenceLayer
 {
@@ -68,18 +68,31 @@ namespace PersistenceLayer
                     while (reader.Read())
                     {
                         RequestExecuted RE = new RequestExecuted();
-                        Request r = requestRepo.get_item(user_id, reader.GetInt32(0));
+                        Request r = requestRepo.get_item(reader.GetInt32(0));
                         RE.SetRequest(r);
-                        RE.SetActalStartTime(reader.GetDateTime(2));
-                        RE.SetActalEndTime(reader.GetDateTime(3));
-                        if (Enum.TryParse(reader.GetString(4), out RequestStatus status))
+
+                        // The actual worker should be assigned in the service layer DO NOT FORGET
+                        Worker tempWorker = new Worker();
+                        tempWorker.set_user_ID(reader.GetInt32(1));
+
+                        RE.SetWroker(tempWorker);
+
+                        // The actual client should be assigned in the service layer DO NOT FORGET
+                        Client tempClient = new Client();
+                        tempClient.set_user_ID(reader.GetInt32(2));
+
+                        RE.SetClient(tempClient);
+
+                        RE.SetActalStartTime(reader.GetDateTime(3));
+                        RE.SetActalEndTime(reader.GetDateTime(4));
+                        if (Enum.TryParse(reader.GetString(5), out RequestStatus status))
                         {
                             RE.SetStatus(status);
                         }
-                        RE.SetClientRate(Convert.ToDouble(reader.GetDecimal(5)));
-                        RE.SetWorkerRate(Convert.ToDouble(reader.GetDecimal(6)));
-                        RE.SetClientFeedback(reader.GetString(7));
-                        RE.SetWorkerFeedback(reader.GetString(8));
+                        RE.SetClientRate(Convert.ToDouble(reader.GetDecimal(6)));
+                        RE.SetWorkerRate(Convert.ToDouble(reader.GetDecimal(7)));
+                        RE.SetClientFeedback(reader.GetString(8));
+                        RE.SetWorkerFeedback(reader.GetString(9));
 
                         RequestsExecuted.Add(RE);
                     }
@@ -227,6 +240,42 @@ namespace PersistenceLayer
             cmdWorker.Parameters.AddWithValue("@Id", worker_id);
 
             cmdWorker.ExecuteNonQuery();
+        }
+
+        public decimal CalculateWage(int worker_id, DateTime from, DateTime to)
+        {
+            try
+            {
+                using (var conn = PM.GetOpenConnection())
+                {
+                    string updateQuery = @"
+                        SELECT SUM(R.Fee), AVG(RE.Worker_rate)
+                        FROM Request R JOIN RequestExecuted RE ON R.Id = RE.Request_id
+                        WHERE RE.Actual_end_time BETWEEN @from AND @to";
+
+                    using var cmd = new SqlCommand(updateQuery, conn);
+                    cmd.Parameters.AddWithValue("@from", from);
+                    cmd.Parameters.AddWithValue("@to", to);
+
+                    using var reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        decimal? totalFee = reader.IsDBNull(0) ? null : reader.GetDecimal(0);
+                        decimal? avgRating = reader.IsDBNull(1) ? null : reader.GetDecimal(1);
+
+                        decimal ratingPercentage = avgRating.HasValue ? avgRating.Value / 5 : 0;
+                        decimal wage = totalFee.HasValue ? totalFee.Value * ratingPercentage : 0;
+
+                        return wage;
+                    }
+                    return 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating request: {ex.Message}");
+                return 0;
+            }
         }
     }
 }

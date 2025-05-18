@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using PersistenceLayer;
-using Task_worker_matching.Memory_Layer;
+using MyAvaloniaApp.Memory_Layer;
 
 
 public class RequestRepoStrategy : IRepositoryStrategy<Request>
@@ -21,10 +21,9 @@ public class RequestRepoStrategy : IRepositoryStrategy<Request>
             using (var conn = _db_connection.GetOpenConnection())
             {
                 string insertQuery = @"
-                    INSERT INTO Request (Client_id, Task_id, Status, preferred_date, Address, Location, Placement_time, IsPrivate, Description)
+                    INSERT INTO Request (Client_id, Task_id, Status, preferred_date, Address, Location, Placement_time, IsPrivate, Description, Fee)
                     OUTPUT INSERTED.Id
-                    VALUES (@ClientId, @TaskId, @Status, @PreferredDate, @Address, @Location, @PlacementTime, @IsPrivate, @Description);
-                    SELECT SCOPE_IDENTITY();";
+                    VALUES (@ClientId, @TaskId, @Status, @PreferredDate, @Address, @Location, @PlacementTime, @IsPrivate, @Description, @Fee);";
 
                 using var cmd = new SqlCommand(insertQuery, conn);
                 cmd.Parameters.AddWithValue("@ClientId", request.ClientId);
@@ -36,6 +35,7 @@ public class RequestRepoStrategy : IRepositoryStrategy<Request>
                 cmd.Parameters.AddWithValue("@PlacementTime", request.PlacementTime);
                 cmd.Parameters.AddWithValue("@IsPrivate", request.IsPrivate);
                 cmd.Parameters.AddWithValue("@Description", request.Description);
+                cmd.Parameters.AddWithValue("@Fee", request.Fee);
 
                 request.Id = (int)cmd.ExecuteScalar();
 
@@ -51,14 +51,14 @@ public class RequestRepoStrategy : IRepositoryStrategy<Request>
         }
     }
 
-    public Request get_item(int user_id, int id)
+    public Request get_item(int id)
     {
         try
         {
             using (var conn = _db_connection.GetOpenConnection())
             {
                 string selectQuery = @"
-                    SELECT Id, Client_id, Task_id, Status, preferred_date, Address, Location, Placement_time, IsPrivate, Description
+                    SELECT Id, Client_id, Task_id, Status, preferred_date, Address, Location, Placement_time, IsPrivate, Description, Fee
                     FROM Request
                     WHERE Id = @Id";
 
@@ -79,7 +79,8 @@ public class RequestRepoStrategy : IRepositoryStrategy<Request>
                         Location = reader.GetString(6),
                         PlacementTime = reader.GetDateTime(7),
                         IsPrivate = reader.GetBoolean(8),
-                        Description = reader.GetString(9)
+                        Description = reader.GetString(9),
+                        Fee = reader.GetDecimal(10)
                     };
                 }
                 return null;
@@ -100,7 +101,7 @@ public class RequestRepoStrategy : IRepositoryStrategy<Request>
             using (var conn = _db_connection.GetOpenConnection())
             {
                 string selectQuery = @"
-                    SELECT Id, Client_id, Task_id, Status, preferred_date, Address, Location, Placement_time, IsPrivate, Description
+                    SELECT Id, Client_id, Task_id, Status, preferred_date, Address, Location, Placement_time, IsPrivate, Description, Fee
                     FROM Request
                     WHERE Client_id = @ClientId";
 
@@ -121,7 +122,8 @@ public class RequestRepoStrategy : IRepositoryStrategy<Request>
                         Location = reader.GetString(6),
                         PlacementTime = reader.GetDateTime(7),
                         IsPrivate = reader.GetBoolean(8),
-                        Description = reader.GetString(9)
+                        Description = reader.GetString(9),
+                        Fee = reader.GetDecimal(10)
                     });
                 }
             }
@@ -149,6 +151,7 @@ public class RequestRepoStrategy : IRepositoryStrategy<Request>
                         Location = @Location, 
                         IsPrivate = @IsPrivate, 
                         Description = @Description
+                        Fee = @Fee
                     WHERE Id = @Id AND Client_id = @ClientId";
 
                 using var cmd = new SqlCommand(updateQuery, conn);
@@ -159,6 +162,7 @@ public class RequestRepoStrategy : IRepositoryStrategy<Request>
                 cmd.Parameters.AddWithValue("@Location", new_item.Location);
                 cmd.Parameters.AddWithValue("@IsPrivate", new_item.IsPrivate);
                 cmd.Parameters.AddWithValue("@Description", new_item.Description);
+                cmd.Parameters.AddWithValue("@Fee", new_item.Fee);
                 cmd.Parameters.AddWithValue("@Id", old_item.Id);
                 cmd.Parameters.AddWithValue("@ClientId", old_item.ClientId);
 
@@ -195,6 +199,57 @@ public class RequestRepoStrategy : IRepositoryStrategy<Request>
         {
             Console.WriteLine($"Error deleting request: {ex.Message}");
             return false;
+        }
+    }
+
+    // The most requested is at list[0] and the least requested is at list[1]
+    public List<Task> MostAndLeastRequestedTasks()
+    {
+        List<Task> MostAndLeast = new();
+        try
+        {
+            using (var conn = _db_connection.GetOpenConnection())
+            {
+                string query = @"
+                WITH TaskRequestCounts AS (
+                    SELECT Task_id, COUNT(*) AS RequestCount
+                    FROM Request
+                    GROUP BY Task_id
+                )
+                SELECT TOP 1 Task.Id, Task.Name, Task.AVG_time, Task.AVG_fee, TRC.RequestCount, 'Most Requested' AS RequestType
+                FROM TaskRequestCounts TRC
+                JOIN Task ON TRC.Task_id = Task.Id
+                ORDER BY TRC.RequestCount DESC
+
+                UNION ALL
+
+                SELECT TOP 1 Task.Id, Task.Name, Task.AVG_time, Task.AVG_fee, TRC.RequestCount, 'Least Requested' AS RequestType
+                FROM TaskRequestCounts TRC
+                JOIN Task ON TRC.Task_id = Task.Id
+                ORDER BY TRC.RequestCount ASC;";
+
+                using var cmd = new SqlCommand(query, conn);
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Task task = new();
+
+                    task.Id = reader.GetInt32(0);
+                    task.Name = reader.GetString(1);
+                    task.Avg_Time = reader.GetInt64(2);
+                    task.AVG_Fee = reader.GetDecimal(3);
+
+                    MostAndLeast.Add(task);
+                }
+                return MostAndLeast;
+
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error deleting request: {ex.Message}");
+            return null;
         }
     }
 }

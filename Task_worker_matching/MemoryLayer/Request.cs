@@ -5,6 +5,7 @@ namespace Task_worker_matching.Memory_Layer;
 public class Request
 {
     public string Description { get; set; }
+    public decimal Fee { get; set; }
     public DateTime PreferredDate { get; set; }
     public RequestStatus Status { get; set; }
     public string Address { get; set; }

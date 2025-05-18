@@ -9,14 +9,6 @@ public class Answer
     private DateTime answer_time;
     private double answer_rate;
 
-    public Answer(User answerer, string answer, DateTime time)
-    {
-        this.answerer = answerer;
-        this.answer = answer;
-        this.answer_time = time;
-        this.answer_rate = 0.0;
-    }
-
     public User get_answerer() => answerer;
     public string get_answer() => answer;
     public DateTime get_answer_time() => answer_time;

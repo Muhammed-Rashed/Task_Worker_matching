@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Task_worker_matching.Memory_Layer;
+namespace Task_worker_matching.Memory_Layer;
 
 public class TasksList : IMemory<Task>
 {

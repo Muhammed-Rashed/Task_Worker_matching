@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using PersistenceLayer;
-using Task_worker_matching.Memory_Layer;
+using MyAvaloniaApp.Memory_Layer;
 
 
 public class TaskRepoStrategy : IRepositoryStrategy<Task>

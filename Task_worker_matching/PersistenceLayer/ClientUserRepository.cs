@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Task_worker_matching.Memory_Layer;
+using MyAvaloniaApp.Memory_Layer;
 using Microsoft.Data.SqlClient;
 using System;
 
@@ -88,7 +88,7 @@ namespace PersistenceLayer
             }
         }
 
-        public User get_user(int userID)
+        public User get_user(string email)
         {
             Client client = new();
             try
@@ -98,21 +98,28 @@ namespace PersistenceLayer
                     string selectQuery = @"
                         SELECT Id, Name, Email, PhoneNum, Address, Overall_rating, Payment_info
                         FROM Client
-                        WHERE Id = @Id;";
+                        WHERE Email = @Email;";
 
                     using var cmd = new SqlCommand(selectQuery, conn);
 
-                    cmd.Parameters.AddWithValue("@Id", userID);
+                    cmd.Parameters.AddWithValue("@Email", email);
 
                     using var reader = cmd.ExecuteReader();
 
-                    client.set_user_ID(reader.GetInt32(0));
-                    client.set_name(reader.GetString(1));
-                    client.set_email(reader.GetString(2));
-                    client.set_phone_number(reader.GetString(3));
-                    client.set_address(reader.GetString(4));
-                    client.set_overall_rating(Convert.ToDouble(reader.GetDecimal(5)));
-                    client.set_payment_info(reader.GetString(6));
+                    if (reader.Read())
+                    {
+                        client.set_user_ID(reader.GetInt32(0));
+                        client.set_name(reader.GetString(1));
+                        client.set_email(reader.GetString(2));
+                        client.set_phone_number(reader.GetString(3));
+                        client.set_address(reader.GetString(4));
+                        client.set_overall_rating(Convert.ToDouble(reader.GetDecimal(5)));
+                        client.set_payment_info(reader.GetString(6));
+                    }
+                    else
+                    {
+                        return null; // No user found with this email
+                    }
 
                 }
                 return client;
@@ -120,7 +127,7 @@ namespace PersistenceLayer
             catch (Exception ex)
             {
                 Console.WriteLine($"Error retrieving requests: {ex.Message}");
-                return client;
+                return null;
             }
         }
 
