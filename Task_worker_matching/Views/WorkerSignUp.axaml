@@ -1,7 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="Task_worker_matching.Views.WorkerSignUp"
-        Width="800" Height="600"
+        Width="1200" Height="800"
         Background="#111827">
 
   <Grid>
@@ -116,7 +116,9 @@
                   Foreground="#2563eb"
                   FontSize="11"
                   Padding="0"
-                  Cursor="Hand"/>
+                  Cursor="Hand"
+                  Click="Login_Click"/>
+                  
         </StackPanel>
       </StackPanel>
     </Border>

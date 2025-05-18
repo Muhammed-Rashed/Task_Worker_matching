@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:views="clr-namespace:Task_worker_matching.Views"
     x:Class="Task_worker_matching.MainWindow"
-    Width="800" Height="600">
+    Width="1200" Height="800">
 
     <Design.PreviewWith>
         <views:WelcomePage />
