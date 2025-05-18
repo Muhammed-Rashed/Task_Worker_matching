@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
@@ -34,6 +33,10 @@
     </Compile>
     <Compile Update="Views\WorkerHome.asaml.cs">
       <DependentUpon>WorkerHome.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ClientNavBar.axaml.cs">
+      <DependentUpon>NavBar.axaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
 </Project>
