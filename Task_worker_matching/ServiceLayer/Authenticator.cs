@@ -2,7 +2,7 @@ using Task_worker_matching.Memory_Layer;
 using Task_worker_matching.Views;
 using PersistenceLayer;
 
-namespace ServiceLayer;
+namespace Task_worker_matching.ServiceLayer;
 
 public class Authenticator
 {

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using PersistenceLayer;
 using Task_worker_matching.Memory_Layer;
+
 namespace Task_worker_matching.ServiceLayer
 {
     class Cache<T> : IDataService<T>
@@ -9,34 +10,12 @@ namespace Task_worker_matching.ServiceLayer
         private IMemory<T> memory;
         private IRepositoryStrategy<T> repository;
 
-        public Cache()
+        public Cache(IMemory<T> memory, IRepositoryStrategy<T> repository)
         {
-            if (memory is IMemory<Question>)
-            {
-                memory = (IMemory<T>)new QuestionsList();
-                repository = (IRepositoryStrategy<T>)new QuestionRepositoryStrategy();
-            }
-            else if (memory is IMemory<Offer>)
-            {
-                memory = (IMemory<T>)new WorkerOffersList();
-                repository = (IRepositoryStrategy<T>)new WorkerOfferRepoStrategy();
-            }
-            else if (memory is IMemory<Request>)
-            {
-                memory = (IMemory<T>)new RequestList();
-                repository = (IRepositoryStrategy<T>)new RequestRepoStrategy();
-            }
-            else if (memory is IMemory<RequestExecuted>)
-            {
-                memory = (IMemory<T>)new RequestExecutedList();
-                repository = (IRepositoryStrategy<T>)new RequestExecutedRepositoryStrategy();
-            }
-            else if (memory is IMemory<Task>)
-            {
-                memory = (IMemory<T>)new TasksList();
-                repository = (IRepositoryStrategy<T>)new TaskRepoStrategy();
-            }
+            this.memory = memory;
+            this.repository = repository;
         }
+
         public bool add(T item)
         {
             return memory.AddItem(item) && repository.add_item(item);
@@ -62,6 +41,20 @@ namespace Task_worker_matching.ServiceLayer
             memory.Set_Data(data);
             return data;
 
+        }
+
+        public bool add_answer(Answer ans, int question_id)
+        {
+            if (typeof(T) == typeof(Question))
+            {
+                var questionRepo = repository as QuestionRepositoryStrategy;
+                if (questionRepo.add_answer(ans, question_id))
+                {
+                    var questionMemory = memory as QuestionsList;
+                    return questionMemory.add_answer(ans, question_id);
+                }
+            }
+            return false;
         }
     }
 }

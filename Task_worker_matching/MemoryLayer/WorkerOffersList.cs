@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 namespace Task_worker_matching.Memory_Layer;
 
-class WorkerOffersList
+class WorkerOffersList : IMemory<Offer>
 {
     private List<Offer> offers = new List<Offer>();
 
-    public bool add(Offer item)
+    public bool AddItem(Offer item)
     {
         if (item != null)
         {
@@ -16,7 +16,7 @@ class WorkerOffersList
         return false;
     }
 
-    public bool update(Offer newItem, Offer oldItem)
+    public bool Update(Offer newItem, Offer oldItem)
     {
         int index = offers.IndexOf(oldItem);
         if (index != -1)
@@ -27,7 +27,7 @@ class WorkerOffersList
         return false;
     }
 
-    public bool delete(Offer item)
+    public bool DeleteItem(Offer item)
     {
         if(item != null)
         {
@@ -36,7 +36,7 @@ class WorkerOffersList
         return false;
     }
 
-    public List<Offer> get_data()
+    public List<Offer> Get_Data()
     {
         return offers;
     }
@@ -59,5 +59,10 @@ class WorkerOffersList
                 return offer;
         }
         return null;
+    }
+
+    public void Set_Data(List<Offer> data)
+    {
+        offers = data;
     }
 }

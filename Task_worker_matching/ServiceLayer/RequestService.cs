@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Task_worker_matching.Memory_Layer;
+
 namespace Task_worker_matching.ServiceLayer;
 class RequestService : IDataService<Request>
 {
-    private readonly Cache<Request> cache;
+    private readonly Cache<Request> cache = new(new RequestList(), new RequestRepoStrategy());
     
     public bool isValidItem(Request item)
     {

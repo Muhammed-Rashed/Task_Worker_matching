@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using ServiceLayer;
 using Task_worker_matching.Memory_Layer;
+
 namespace Task_worker_matching.ServiceLayer
 {
     class WorkerOfferService : IDataService<Offer>
     {
-        private Cache<Offer> cache;
+        private Cache<Offer> cache = new(new WorkerOffersList(), new WorkerOfferRepoStrategy());
     
         public bool isValidItem(Offer item)
         {

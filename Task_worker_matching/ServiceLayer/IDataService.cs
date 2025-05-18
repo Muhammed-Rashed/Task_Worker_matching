@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-namespace ServiceLayer;
+
+namespace Task_worker_matching.ServiceLayer;
 public interface IDataService<T>
 {
     bool add(T item);

@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using PersistenceLayer;
 using Task_worker_matching.Memory_Layer;
 
-namespace ServiceLayer;
+namespace Task_worker_matching.ServiceLayer;
 
 public class RequestExecutedService : IDataService<RequestExecuted>
 {
-    private Cache<RequestExecuted> cache;
+    private Cache<RequestExecuted> cache = new Cache<RequestExecuted>(new RequestExecutedList(), new RequestExecutedRepositoryStrategy());
     public bool add(RequestExecuted item)
     {
         return cache.add(item);

@@ -73,4 +73,17 @@ public class QuestionsList : IMemory<Question>
         return null;
     }
 
+    public bool add_answer(Answer ans, int id)
+    {
+        foreach (var question in questions)
+        {
+            if (question.get_id() == id)
+            {
+                question.add_answer(ans);
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

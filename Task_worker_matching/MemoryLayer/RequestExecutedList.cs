@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Task_worker_matching.Memory_Layer;
 
-class RequestExecutedList
+class RequestExecutedList : IMemory<RequestExecuted>
 {
     private List<RequestExecuted> requestExecuted = new List<RequestExecuted>();
 
-    public bool Add(RequestExecuted item)
+    public bool AddItem(RequestExecuted item)
     {
         if (item != null)
         {
@@ -28,7 +28,7 @@ class RequestExecutedList
         return false;
     }
 
-    public bool Delete(RequestExecuted item)
+    public bool DeleteItem(RequestExecuted item)
     {
         if (item != null)
         {
@@ -37,7 +37,7 @@ class RequestExecutedList
         return false;
     }
 
-    public List<RequestExecuted> GetData()
+    public List<RequestExecuted> Get_Data()
     {
         return requestExecuted;
     }
@@ -61,5 +61,10 @@ class RequestExecutedList
                 return req;
         }
         return null;
+    }
+
+    public void Set_Data(List<RequestExecuted> data)
+    {
+        requestExecuted = data;
     }
 }

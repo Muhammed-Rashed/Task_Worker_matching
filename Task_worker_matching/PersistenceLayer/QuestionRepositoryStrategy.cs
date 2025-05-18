@@ -47,6 +47,44 @@ namespace PersistenceLayer
                 return false;
             }
         }
+
+        public bool add_answer(Answer answer, int question_id)
+        {
+            try
+            {
+                using (var conn = PM.GetOpenConnection())
+                {
+                    string insertQuery = @"
+                    INSERT INTO Anwer (Question_id, Answer_text, Answerer_id, Answerer_type, Answer_time, Answer_rate)
+                    VALUES (@Question_id, @Answer_text, @Answerer_id, @Answerer_type, @Answer_time, @Answer_rate);";
+
+                    using var cmd = new SqlCommand(insertQuery, conn);
+                    cmd.Parameters.AddWithValue("@Question_id", question_id);
+                    cmd.Parameters.AddWithValue("@Answer_text", answer.get_answer());
+                    cmd.Parameters.AddWithValue("@Answerer_id", answer.get_answerer().get_user_ID());
+
+                    // Check the user type
+                    if (answer.get_answerer() is Client)
+                    {
+                        cmd.Parameters.AddWithValue("@Answerer_type", 0);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@Answerer_type", 1);
+                    }
+
+                    cmd.Parameters.AddWithValue("@Answer_time", answer.get_answer_time());
+                    cmd.Parameters.AddWithValue("@Answer_rate", answer.get_answer_rate());
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error adding Answers: {ex.Message}");
+                return false;
+            }
+        }
         public bool add_item(Question item)
         {
             try
