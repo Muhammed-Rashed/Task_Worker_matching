@@ -46,7 +46,7 @@ namespace PersistenceLayer
             CREATE TABLE Client (
                 Id INT PRIMARY KEY IDENTITY(1,1),
                 Name VARCHAR(50),
-                Email VARCHAR(100),
+                Email VARCHAR(100) UNIQUE,
                 PhoneNum VARCHAR(15),
                 Address VARCHAR(100),
                 Overall_rating DECIMAL(2,1),
@@ -58,7 +58,7 @@ namespace PersistenceLayer
             CREATE TABLE Worker (
                 Id INT PRIMARY KEY IDENTITY(1,1),
                 Name VARCHAR(50),
-                Email VARCHAR(100),
+                Email VARCHAR(100) UNIQUE,
                 PhoneNum VARCHAR(15),
                 Available_locations VARCHAR(500),
                 Overall_rating DECIMAL(2,1),
@@ -71,7 +71,7 @@ namespace PersistenceLayer
             IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Speciality' AND xtype='U')
             CREATE TABLE Speciality (
                 Id INT PRIMARY KEY IDENTITY(1,1),
-                Speciality_name VARCHAR(50)
+                Speciality_name VARCHAR(50) UNIQUE
             );";
 
             // A join table to assign specialities to workers
@@ -88,7 +88,7 @@ namespace PersistenceLayer
             IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Task' AND xtype='U')
             CREATE TABLE Task (
                 Id INT PRIMARY KEY IDENTITY(1,1),
-                Name VARCHAR(50),
+                Name VARCHAR(50) UNIQUE,
                 AVG_time BIGINT,
                 AVG_fee MONEY
             );";

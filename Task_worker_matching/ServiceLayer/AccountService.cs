@@ -7,7 +7,7 @@ namespace Task_worker_matching.ServiceLayer;
 public class AccountService
 {
     private User currentUser;
-    private Authenticator auth;
+    private Authenticator auth = new();
     private IUserRepository userRepo;
     public User GetCurrentUser() => currentUser;
     public AccountValidation signup(User user)
