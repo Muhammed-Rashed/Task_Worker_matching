@@ -33,7 +33,7 @@ namespace Task_worker_matching.ViewModels
             );
 
             NavigateHomeCommand = new RelayCommand(() => Navigator.Instance.Navigate(new WorkerHome()));
-            NavigateMyOffersCommand = new RelayCommand(() => Navigator.Instance.Navigate(new MyOffersPage()));
+            NavigateMyOffersCommand = new RelayCommand(() => Navigator.Instance.Navigate(new MyOffers()));
             NavigateExecutionCommand = new RelayCommand(() => Navigator.Instance.Navigate(new TaskExecution()));
             NavigateQuestionsCommand = new RelayCommand(() => Navigator.Instance.Navigate(new QuestionsPage()));
             NavigateProfileCommand = new RelayCommand(() => Navigator.Instance.Navigate(new WorkerProfile()));

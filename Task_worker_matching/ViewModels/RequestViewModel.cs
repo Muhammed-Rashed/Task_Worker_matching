@@ -20,12 +20,6 @@ namespace Task_worker_matching.ViewModels
             Title   = memoryModel.Task?.Name ?? "—";
             // Use Request.Description as the summary
             Summary = memoryModel.Description;
-
-            // Navigate to a details page, passing along the Request Id
-            ViewDetailsCommand = new RelayCommand(() =>
-            {
-                NavigationService.Instance.NavigateTo($"RequestDetails:{memoryModel.Id}");
-            });
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

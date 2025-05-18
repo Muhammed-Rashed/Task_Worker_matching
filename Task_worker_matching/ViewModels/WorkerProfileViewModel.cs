@@ -94,13 +94,7 @@ namespace Task_worker_matching.ViewModels
             {
                 $"{worker.GetAvailableStartTime():hh\\:mm} - {worker.GetAvailableEndTime():hh\\:mm}"
             };
-
-            // Build earnings history from completed requests
-            Earnings = new ObservableCollection<EarningViewModel>(
-                _requestService
-                    .Get_Completed()
-                    .ConvertAll(r => new EarningViewModel(r))
-            );
+            
 
             // Commands
             SaveProfileCommand      = new RelayCommand(SaveProfile);
@@ -110,7 +104,7 @@ namespace Task_worker_matching.ViewModels
             EditAvailabilityCommand = new RelayCommand(() => {/* open edit dialog */});
 
             NavigateHomeCommand = new CommunityToolkit.Mvvm.Input.RelayCommand(() => Navigator.Instance.Navigate(new WorkerHome()));
-            NavigateMyOffersCommand = new CommunityToolkit.Mvvm.Input.RelayCommand(() => Navigator.Instance.Navigate(new MyOffersPage()));
+            NavigateMyOffersCommand = new CommunityToolkit.Mvvm.Input.RelayCommand(() => Navigator.Instance.Navigate(new MyOffers()));
             NavigateOpenRequestsCommand = new CommunityToolkit.Mvvm.Input.RelayCommand(() => Navigator.Instance.Navigate(new OpenRequests()));
             NavigateExecutionCommand = new CommunityToolkit.Mvvm.Input.RelayCommand(() => Navigator.Instance.Navigate(new TaskExecution()));
             NavigateQuestionsCommand = new CommunityToolkit.Mvvm.Input.RelayCommand(() => Navigator.Instance.Navigate(new QuestionsPage()));

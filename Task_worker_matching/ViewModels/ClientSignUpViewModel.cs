@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Task_worker_matching.Memory_Layer;
-using ServiceLayer;
 using Task_worker_matching.ServiceLayer;
 
 namespace Task_worker_matching.ViewModels
