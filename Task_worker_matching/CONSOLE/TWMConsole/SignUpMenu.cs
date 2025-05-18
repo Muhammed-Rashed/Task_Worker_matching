@@ -116,7 +116,7 @@ public class SignUpMenu(AccountService service)
         switch (state)
         {
             case AccountValidation.AllCorrect:
-                Console.Out.WriteLine($"Account Created successfully, Welcome {user.get_name}");
+                Console.Out.WriteLine($"Account Created successfully, Welcome {user.get_name()}");
                 return true;
             case AccountValidation.EmailWrong:
                 Console.Error.WriteLine("Email already exists or has incorrect format");

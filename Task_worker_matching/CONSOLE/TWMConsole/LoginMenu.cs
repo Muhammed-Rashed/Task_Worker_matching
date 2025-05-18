@@ -47,7 +47,7 @@ public class LoginMenu(AccountService service)
         switch (state)
         {
             case AccountValidation.AllCorrect:
-                Console.Out.WriteLine($"Welcome {user.get_name}");
+                Console.Out.WriteLine($"Welcome {user.get_name()}");
                 return true;
             case AccountValidation.EmailWrong:
                 Console.Error.WriteLine("Email is incorrect");
