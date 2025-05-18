@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using MyAvaloniaApp.Memory_Layer;
+using Task_worker_matching.Memory_Layer;
 namespace ServiceLayer;
 
 class WorkerOfferService : IDataService<Offer>

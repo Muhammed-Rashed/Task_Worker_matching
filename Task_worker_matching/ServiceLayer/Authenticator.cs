@@ -1,5 +1,5 @@
-using MyAvaloniaApp.Memory_Layer;
-using MyAvaloniaApp.Views;
+using Task_worker_matching.Memory_Layer;
+using Task_worker_matching.Views;
 using PersistenceLayer;
 
 namespace ServiceLayer;
