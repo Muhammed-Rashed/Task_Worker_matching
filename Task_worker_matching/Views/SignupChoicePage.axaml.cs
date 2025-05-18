@@ -16,10 +16,16 @@ namespace Task_worker_matching.Views
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+
+            this.FindControl<Button>("ClientButton").Click += ClientButton_Click;
+            this.FindControl<Button>("WorkerButton").Click += WorkerButton_Click;
+            this.FindControl<Button>("LoginLink").Click += LoginLinkButton_Click;
+
         }
 
         private void ClientButton_Click(object? sender, RoutedEventArgs e)
         {
+            Console.WriteLine("Client button clicked");
             Navigator.Instance.Navigate(new ClientSignUp());
         }
 

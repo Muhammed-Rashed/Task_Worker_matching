@@ -1,32 +1,36 @@
 <UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="clr-namespace:Task_worker_matching.ViewModels"
-             x:Class="Task_worker_matching.Views.WorkerProfile"
-             x:DataType="vm:WorkerProfileViewModel"
-             Width="1024" Height="700"
-             Background="#111827">
-
-  <UserControl.DataContext>
-    <vm:WorkerProfileViewModel/>
-  </UserControl.DataContext>
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Task_worker_matching.Views.WorkerProfile"
+        Width="1024" Height="700"
+        Background="#111827">
 
   <Grid>
-    <!-- rows/cols omitted for brevity -->
+    <!-- 5% / 90% / 5% rows -->
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0.05*"/>
+      <RowDefinition Height="0.9*"/>
+      <RowDefinition Height="0.05*"/>
+    </Grid.RowDefinitions>
+    <!-- 5% / 90% / 5% columns -->
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="0.05*"/>
+      <ColumnDefinition Width="0.9*"/>
+      <ColumnDefinition Width="0.05*"/>
+    </Grid.ColumnDefinitions>
 
     <!-- Navigation Bar -->
-    <StackPanel x:Name="NavPanel"
-                Grid.Row="0" Grid.Column="1"
+    <StackPanel Grid.Row="0" Grid.Column="1"
                 Orientation="Horizontal"
                 Spacing="10"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">
-      <Button Content="Home" Command="{Binding NavigateHomeCommand}"/>
-      <Button Content="My offers" Command="{Binding NavigateMyOffersCommand}"/>
-      <Button Content="Open requests" Command="{Binding NavigateOpenRequestsCommand}"/>
-      <Button Content="Task Execution" Command="{Binding NavigateExecutionCommand}"/>
-      <Button Content="Questions" Command="{Binding NavigateQuestionsCommand}"/>
-      <Button Content="Profile" Command="{Binding NavigateProfileCommand}" Background="#2563eb"/>
-      <Button Content="Log out" Command="{Binding LogoutCommand}"/>
+      <Button Content="Home" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="My offers" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Open requests" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Task Execution" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Questions" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Profile" Background="#2563eb" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
+      <Button Content="Log out" Background="#1f2937" Foreground="White" Padding="8,4" CornerRadius="8" BorderBrush="Transparent"/>
     </StackPanel>
 
     <!-- Backdrop Panel -->
@@ -41,9 +45,16 @@
       <StackPanel Spacing="24">
 
         <!-- Profile Section -->
-        <Border Background="#111827" BorderBrush="#425f9e" BorderThickness="1" CornerRadius="6" Padding="16">
+        <Border Background="#111827"
+                BorderBrush="#425f9e"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="16">
           <StackPanel Spacing="16">
-            <TextBlock Text="Profile" FontSize="16" FontWeight="Bold" Foreground="White"/>
+            <TextBlock Text="Profile"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Foreground="White"/>
 
             <!-- Full Name & Email -->
             <Grid ColumnSpacing="12">
@@ -53,12 +64,18 @@
               </Grid.ColumnDefinitions>
               <TextBox Grid.Column="0"
                        Watermark="Full Name"
-                       Text="{Binding FullName, Mode=TwoWay}"
-                       Background="#374151" Foreground="White" BorderBrush="#425f9e" Height="30"/>
+                       Text="John Doe"
+                       Background="#374151"
+                       Foreground="White"
+                       BorderBrush="#425f9e"
+                       Height="30"/>
               <TextBox Grid.Column="1"
                        Watermark="Email Address"
-                       Text="{Binding Email, Mode=TwoWay}"
-                       Background="#374151" Foreground="White" BorderBrush="#425f9e" Height="30"/>
+                       Text="john@example.com"
+                       Background="#374151"
+                       Foreground="White"
+                       BorderBrush="#425f9e"
+                       Height="30"/>
             </Grid>
 
             <!-- Phone + Save -->
@@ -69,19 +86,28 @@
               </Grid.ColumnDefinitions>
               <TextBox Grid.Column="0"
                        Watermark="Phone Number"
-                       Text="{Binding PhoneNumber, Mode=TwoWay}"
-                       Background="#374151" Foreground="White" BorderBrush="#425f9e" Height="30"/>
+                       Text="+1 555 123 4567"
+                       Background="#374151"
+                       Foreground="White"
+                       BorderBrush="#425f9e"
+                       Height="30"/>
               <Button Grid.Column="1"
                       Content="Save Changes"
-                      Command="{Binding SaveProfileCommand}"
-                      Background="#2563eb" Foreground="White" Padding="10,4"
-                      BorderBrush="Transparent" CornerRadius="6"/>
+                      Background="#2563eb"
+                      Foreground="White"
+                      Padding="10,4"
+                      BorderBrush="Transparent"
+                      CornerRadius="6"/>
             </Grid>
 
             <!-- Change Password -->
-            <TextBlock Text="Change Password" FontSize="14" FontWeight="Bold" Foreground="White" Margin="0,8,0,4"/>
+            <TextBlock Text="Change Password"
+                       FontSize="14"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       Margin="0,8,0,4"/>
 
-            <Grid RowSpacing="8" ColumnSpacing="12">
+            <Grid RowSpacing="8">
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -92,35 +118,48 @@
                 <RowDefinition Height="Auto"/>
               </Grid.RowDefinitions>
 
+              <!-- Current & New -->
               <TextBox Grid.Row="0" Grid.Column="0"
                        Watermark="Current Password"
-                       PasswordChar="●"
-                       Text="{Binding CurrentPassword, Mode=TwoWay}"
-                       Background="#374151" Foreground="White" BorderBrush="#425f9e" Height="30"/>
+                       Background="#374151"
+                       Foreground="White"
+                       Margin = "0,0,20,0"
+                       BorderBrush="#425f9e"
+                       Height="30"/>
               <TextBox Grid.Row="0" Grid.Column="1"
                        Watermark="New Password"
-                       PasswordChar="●"
-                       Text="{Binding NewPassword, Mode=TwoWay}"
-                       Background="#374151" Foreground="White" BorderBrush="#425f9e" Height="30"/>
+                       Background="#374151"
+                       Foreground="White"
+                       BorderBrush="#425f9e"
+                       Height="30"/>
 
+              <!-- Confirm -->
               <TextBox Grid.Row="1" Grid.ColumnSpan="2"
                        Watermark="Confirm Password"
-                       PasswordChar="●"
-                       Text="{Binding ConfirmPassword, Mode=TwoWay}"
-                       Background="#374151" Foreground="White" BorderBrush="#425f9e" Height="30"/>
+                       Background="#374151"
+                       Foreground="White"
+                       BorderBrush="#425f9e"
+                       Height="30"/>
 
+              <!-- Save -->
               <Button Grid.Row="2" Grid.Column="0"
                       Content="Save Changes"
-                      Command="{Binding SavePasswordCommand}"
-                      Background="#2563eb" Foreground="White" Padding="10,4"
-                      BorderBrush="Transparent" CornerRadius="6"
+                      Background="#2563eb"
+                      Foreground="White"
+                      Padding="10,4"
+                      BorderBrush="Transparent"
+                      CornerRadius="6"
                       HorizontalAlignment="Left"/>
             </Grid>
           </StackPanel>
         </Border>
 
         <!-- Speciality / Locations / Availability Section -->
-        <Border Background="#111827" BorderBrush="#425f9e" BorderThickness="1" CornerRadius="6" Padding="16">
+        <Border Background="#111827"
+                BorderBrush="#425f9e"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="16">
           <StackPanel Spacing="16">
             <Grid ColumnSpacing="24">
               <Grid.ColumnDefinitions>
@@ -131,87 +170,131 @@
 
               <!-- Speciality -->
               <StackPanel Grid.Column="0" Spacing="8">
-                <TextBlock Text="Speciality" FontSize="14" FontWeight="Bold" Foreground="White"/>
-                <Border Background="#1f2937" CornerRadius="4" Padding="8" Height="80">
-                  <ItemsControl Items="{Binding Specialities}">
-                    <ItemsControl.ItemTemplate>
-                      <DataTemplate>
-                        <TextBlock Text="# {Binding}" Foreground="#2563eb" FontSize="12"/>
-                      </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                  </ItemsControl>
+                <TextBlock Text="Speciality"
+                           FontSize="14"
+                           FontWeight="Bold"
+                           Foreground="White"/>
+                <Border Background="#1f2937"
+                        CornerRadius="4"
+                        Padding="8"
+                        Height="80">
+                  <StackPanel Spacing="4">
+                    <TextBlock Text="#Plumbing" Foreground="#2563eb" FontSize="12"/>
+                    <TextBlock Text="#Electrical" Foreground="#2563eb" FontSize="12"/>
+                    <TextBlock Text="#Web Development" Foreground="#2563eb" FontSize="12"/>
+                  </StackPanel>
                 </Border>
-                <Button Content="Edit" Command="{Binding EditSpecialitiesCommand}"
-                        Background="#2563eb" Foreground="White" Padding="6,4"
-                        BorderBrush="Transparent" CornerRadius="6" HorizontalAlignment="Center"/>
+                <Button Content="Edit"
+                        Background="#2563eb"
+                        Foreground="White"
+                        Padding="6,4"
+                        BorderBrush="Transparent"
+                        CornerRadius="6"
+                        HorizontalAlignment="Center"/>
               </StackPanel>
 
               <!-- Service Locations -->
               <StackPanel Grid.Column="1" Spacing="8">
-                <TextBlock Text="Service Locations" FontSize="14" FontWeight="Bold" Foreground="White"/>
-                <Border Background="#1f2937" CornerRadius="4" Padding="8" Height="80">
-                  <ItemsControl Items="{Binding ServiceLocations}">
-                    <ItemsControl.ItemTemplate>
-                      <DataTemplate>
-                        <TextBlock Text="# {Binding}" Foreground="#2563eb" FontSize="12"/>
-                      </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                  </ItemsControl>
+                <TextBlock Text="Service Locations"
+                           FontSize="14"
+                           FontWeight="Bold"
+                           Foreground="White"/>
+                <Border Background="#1f2937"
+                        CornerRadius="4"
+                        Padding="8"
+                        Height="80">
+                  <StackPanel Spacing="4">
+                    <TextBlock Text="#Remote" Foreground="#2563eb" FontSize="12"/>
+                    <TextBlock Text="#Cairo" Foreground="#2563eb" FontSize="12"/>
+                    <TextBlock Text="#6Th Of October" Foreground="#2563eb" FontSize="12"/>
+                  </StackPanel>
                 </Border>
-                <Button Content="Edit" Command="{Binding EditLocationsCommand}"
-                        Background="#2563eb" Foreground="White" Padding="6,4"
-                        BorderBrush="Transparent" CornerRadius="6" HorizontalAlignment="Center"/>
+                <Button Content="Edit"
+                        Background="#2563eb"
+                        Foreground="White"
+                        Padding="6,4"
+                        BorderBrush="Transparent"
+                        CornerRadius="6"
+                        HorizontalAlignment="Center"/>
               </StackPanel>
 
               <!-- Availability -->
               <StackPanel Grid.Column="2" Spacing="8">
-                <TextBlock Text="Availability" FontSize="14" FontWeight="Bold" Foreground="White"/>
-                <Border Background="#1f2937" CornerRadius="4" Padding="8" Height="80">
-                  <ItemsControl Items="{Binding AvailabilitySlots}">
-                    <ItemsControl.ItemTemplate>
-                      <DataTemplate>
-                        <TextBlock Text="{Binding}" Foreground="LightGray" FontSize="12"/>
-                      </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                  </ItemsControl>
+                <TextBlock Text="Availability"
+                           FontSize="14"
+                           FontWeight="Bold"
+                           Foreground="White"/>
+                <Border Background="#1f2937"
+                        CornerRadius="4"
+                        Padding="8"
+                        Height="80">
+                  <StackPanel Spacing="4">
+                    <TextBlock Text="Saturday 10:00 ‑ 20:00" Foreground="LightGray" FontSize="12"/>
+                    <TextBlock Text="Sunday 16:00 ‑ 20:00" Foreground="LightGray" FontSize="12"/>
+                  </StackPanel>
                 </Border>
-                <Button Content="Edit" Command="{Binding EditAvailabilityCommand}"
-                        Background="#2563eb" Foreground="White" Padding="6,4"
-                        BorderBrush="Transparent" CornerRadius="6" HorizontalAlignment="Center"/>
+                <Button Content="Edit"
+                        Background="#2563eb"
+                        Foreground="White"
+                        Padding="6,4"
+                        BorderBrush="Transparent"
+                        CornerRadius="6"
+                        HorizontalAlignment="Center"/>
               </StackPanel>
-
             </Grid>
           </StackPanel>
         </Border>
 
         <!-- Earning History -->
-        <Border Background="#111827" BorderBrush="#425f9e" BorderThickness="1" CornerRadius="6" Padding="16">
+        <Border Background="#111827"
+                BorderBrush="#425f9e"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="16">
           <StackPanel Spacing="12">
-            <TextBlock Text="Earning History" FontSize="16" FontWeight="Bold" Foreground="White"/>
+            <TextBlock Text="Earning History"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Foreground="White"/>
 
-            <ItemsControl Items="{Binding Earnings}">
-              <ItemsControl.ItemTemplate>
-                <DataTemplate x:DataType="vm:EarningViewModel">
-                  <Grid RowSpacing="6" ColumnSpacing="6">
-                    <Grid.ColumnDefinitions>
-                      <ColumnDefinition Width="2*"/>
-                      <ColumnDefinition Width="*"/>
-                      <ColumnDefinition Width="*"/>
-                      <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <!-- Title -->
-                    <TextBlock Grid.Column="0" Text="{Binding TaskTitle}" Foreground="White" FontSize="12"/>
-                    <!-- Date -->
-                    <TextBlock Grid.Column="1" Text="{Binding DateCompleted, StringFormat={}{0:MMM d, yyyy}}" Foreground="White" FontSize="12"/>
-                    <!-- Amount -->
-                    <TextBlock Grid.Column="2" Text="{Binding Amount, StringFormat={}{0:C}}" Foreground="White" FontSize="12"/>
-                    <!-- Client -->
-                    <TextBlock Grid.Column="3" Text="{Binding ClientName}" Foreground="#2563eb" FontSize="12"/>
-                  </Grid>
-                </DataTemplate>
-              </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <Grid RowSpacing="6" ColumnSpacing="6">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
 
+              <!-- Header -->
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="Task Title" Foreground="LightGray" FontSize="12" FontWeight="SemiBold"/>
+              <TextBlock Grid.Row="0" Grid.Column="1" Text="Date Completed" Foreground="LightGray" FontSize="12" FontWeight="SemiBold"/>
+              <TextBlock Grid.Row="0" Grid.Column="2" Text="Amount Earnt" Foreground="LightGray" FontSize="12" FontWeight="SemiBold"/>
+              <TextBlock Grid.Row="0" Grid.Column="3" Text="Client" Foreground="LightGray" FontSize="12" FontWeight="SemiBold"/>
+
+              <!-- Row 1 -->
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="Website Design" Foreground="White" FontSize="12"/>
+              <TextBlock Grid.Row="1" Grid.Column="1" Text="Oct 15, 2023" Foreground="White" FontSize="12"/>
+              <TextBlock Grid.Row="1" Grid.Column="2" Text="$500.00" Foreground="White" FontSize="12"/>
+              <TextBlock Grid.Row="1" Grid.Column="3" Text="Sarah Smith" Foreground="#2563eb" FontSize="12"/>
+
+              <!-- Row 2 -->
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="Logo Design" Foreground="White" FontSize="12"/>
+              <TextBlock Grid.Row="2" Grid.Column="1" Text="Oct 10, 2023" Foreground="White" FontSize="12"/>
+              <TextBlock Grid.Row="2" Grid.Column="2" Text="$200.00" Foreground="White" FontSize="12"/>
+              <TextBlock Grid.Row="2" Grid.Column="3" Text="Mike Johnson" Foreground="#2563eb" FontSize="12"/>
+
+              <!-- Row 3 -->
+              <TextBlock Grid.Row="3" Grid.Column="0" Text="Content Writing" Foreground="White" FontSize="12"/>
+              <TextBlock Grid.Row="3" Grid.Column="1" Text="Oct 5, 2023" Foreground="White" FontSize="12"/>
+              <TextBlock Grid.Row="3" Grid.Column="2" Text="$150.00" Foreground="White" FontSize="12"/>
+              <TextBlock Grid.Row="3" Grid.Column="3" Text="Emily Brown" Foreground="#2563eb" FontSize="12"/>
+            </Grid>
           </StackPanel>
         </Border>
 
